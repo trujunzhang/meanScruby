@@ -1,3 +1,6 @@
+.course-nav {
+  overflow: hidden;
+}
 .landing-navigation {
   background: #333333;
   box-shadow: none;

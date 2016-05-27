@@ -1,0 +1,174 @@
+.course-page {
+  color: #4a4a4a;
+  font-weight: 400;
+}
+.course-page * {
+  box-sizing: border-box;
+}
+.course-page .course-page-main {
+  margin: 0 auto;
+  max-width: 1440px;
+}
+.course-page .course-page-container {
+  margin: 0 auto;
+  max-width: 1180px;
+}
+.course-page h1 {
+  font-weight: 300;
+  margin-top: 0;
+}
+.course-page h2 {
+  font-weight: 300;
+  margin-top: 0;
+}
+.course-page h3 {
+  font-weight: 300;
+  margin-bottom: 16px;
+  margin-top: 0;
+}
+.course-page h4 {
+  font-weight: 300;
+  margin-top: 0;
+}
+.course-page h5 {
+  font-weight: 300;
+  margin-top: 0;
+}
+.course-page h6 {
+  font-weight: 300;
+  margin-top: 0;
+}
+.course-page p {
+  margin-bottom: 32px;
+}
+.course-page .restrict-line-width {
+  max-width: 504px;
+}
+.course-page .page-section-contrast {
+  background: #e74c3c;
+  color: white;
+}
+.course-page .page-section-contrast a {
+  color: white;
+  font-weight: 700;
+}
+.course-page .page-section-contrast .mini-headline {
+  opacity: 0.4;
+}
+.course-page .course-page-section-header .section-mini-title {
+  font-size: 18px;
+  font-weight: 900;
+  margin-bottom: 0;
+}
+.course-page .course-page-section-header .section-description {
+  max-width: 585px;
+}
+.course-page .page-section-headline {
+  font-size: 24px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+.course-page .hero-infosession-variant {
+  -ms-flex-positive: 1;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+  width: 100%;
+}
+.course-page .hero-infosession-variant::after {
+  clear: both;
+  content: " ";
+  display: block;
+}
+.course-page .hero-infosession-variant h1 {
+  font-size: 48px;
+  line-height: 52px;
+  margin-bottom: 24px;
+  text-align: left;
+}
+.course-page .hero-infosession-variant .subtitle {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+.course-page .hero-infosession-variant .subtitle2 {
+  font-size: 16px;
+  max-width: 450px;
+}
+.course-page .hero-infosession-variant .hero-text-content {
+  margin-bottom: 32px;
+}
+.course-page .course-hero {
+  -ms-flex-align: stretch;
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  align-items: stretch;
+  background-position: 67% center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  overflow: hidden;
+  padding-bottom: 40px;
+  padding-top: 40px;
+}
+.course-page .course-hero .page-section-inner {
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  align-items: center;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+.course-page .course-hero .hero-text-content {
+  -ms-flex-item-align: center;
+  -webkit-align-self: center;
+  align-self: center;
+  color: white;
+}
+.course-page .course-hero .hero-text-content a {
+  color: white;
+  font-weight: 700;
+}
+.course-page .course-hero .hero-text-content .mini-headline {
+  opacity: 0.4;
+}
+.course-page .course-hero h1 {
+  color: white;
+  font-family: "Open Sans Condensed", sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 3.5rem;
+  margin-bottom: 20px;
+}
+.course-page .course-hero .price {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+.course-page .course-hero .subtitle {
+  font-size: 24px;
+  margin-bottom: 0;
+}
+.course-page .course-hero .components {
+  display: none;
+}
+.course-page .course-hero .hero-components .component {
+  border: solid 1px #ffffff;
+  display: inline-block;
+  font-size: 16px;
+  margin-right: 5px;
+  padding: 10px 24px;
+  text-align: center;
+  vertical-align: middle;
+}
+.course-page .course-hero .hero-components .separator {
+  display: inline-block;
+  font-size: 36px;
+  font-weight: bold;
+  margin-right: 5px;
+  text-align: center;
+  vertical-align: middle;
+}
