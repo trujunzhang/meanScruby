@@ -2,40 +2,8 @@
     background-color: #333333;
 }
 
-.course-page {
-	.page-section {
-		padding: 32px;
-	}
-	.page-section>* {
-		&:last-child {
-			margin-bottom: 0;
-		}
-	}
-	.page-section .post-separator-box>* {
-		&:first-child {
-			margin-top: 145px;
-		}
-	}
-	.page-section-inner {
-		margin: 0 auto;
-		max-width: 1160px;
-	}
-}
 
-@media (min-width: 992px) {
-  .course-page .page-section {
-    padding: 72px
-  }
-}
+// Core variables and mixins
+@import "course-page.less";
 
-@media (max-width: 768px) {
-  .course-page .page-section.post-separator-box > *:first-child {
-    margin-top: 0
-  }
-}
-
-@media (max-width: 767px) {
-  .course-page .page-section-inner {
-    padding: 0
-  }
-}
+@import "landing-navigation.less";
