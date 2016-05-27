@@ -36,12 +36,9 @@
 </head>
 
 <body class="full-page-base-style">
-  <header ng-include="'/modules/core/client/views/header.client.view.html'" class="navbar navbar-fixed-top navbar-inverse"></header>
-  <section class="content">
-    <section class="container">
-      {% block content %}{% endblock %}
-    </section>
-  </section>
+
+  {% block content %}{% endblock %}
+
 
   <!--Embedding The User Object-->
   <script type="text/javascript">
