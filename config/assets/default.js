@@ -9,7 +9,7 @@ module.exports = {
         'public/lib/bootstrap/dist/css/bootstrap-theme.css',
         // endbower
         // font-awesome:css
-        'public/lib/font-awesome/css/font-awesome.css',
+        'public/lib/font-awesome/css/font-awesome.css'
         // endfont-awesome
       ],
       js: [

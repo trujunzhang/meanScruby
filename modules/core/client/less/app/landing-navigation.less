@@ -185,3 +185,48 @@
 		}
 	}
 }
+
+.sub-navigation {
+	background: #4d4d4d;
+	color: #999999;
+	min-height: 60px;
+	padding: 0;
+	width: 100%;
+	.nav-title {
+		display: none;
+		font-weight: 700;
+		height: 30px;
+		margin-top: 15px;
+	}
+	.links {
+		margin-top: 15px;
+		a {
+			color: #999999;
+			font-size: 14px;
+			line-height: 30px;
+			margin-left: 25px;
+			white-space: nowrap;
+			&::after {
+				bottom: 0 !important;
+			}
+		}
+	}
+}
+
+@media (min-width: 992px) {
+  .sub-navigation .nav-title {
+    display: block
+  }
+}
+
+@media (min-width: 992px) {
+  .sub-navigation .links a {
+    margin-left: 40px
+  }
+}
+
+@media (max-width: 768px) {
+  .sub-navigation #email_capt_form {
+    display: none
+  }
+}
