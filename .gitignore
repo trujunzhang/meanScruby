@@ -78,4 +78,8 @@ public/lib/jquery
 public/lib/font-awesome
 public/lib/owasp-password-strength-test
 
+modules/core/client/views/header.client.view1.html
+
+
+
 
