@@ -136,7 +136,7 @@
         <div class="col-lg-8 col-md-10 col-sm-12 col-lg-offset-2 col-md-offset-1">
           <div class="owl-carousel" id="testimonial-carousel">
             <div class="single-quote">
-              <img class="person" src="/assets/1.jpg" width="80" height="80" alt="Mourad Al Ashry" pagespeed_url_hash="4032499552">
+              <img class="person" src="/modules/core/client/img/customers/1.jpg" width="80" height="80" alt="Mourad Al Ashry" pagespeed_url_hash="4032499552">
               <blockquote>
                 <p>A breakthrough technology!! Scruby saved our startup by reducing the business time needed to
                   develop our App LocName.</p>
@@ -146,7 +146,7 @@
               </blockquote>
             </div>
             <div class="single-quote">
-              <img class="person" src="/assets/2.jpg" width="80" height="80" alt="Ahmed Abdel Fatah" pagespeed_url_hash="32032177">
+              <img class="person" src="/modules/core/client/img/customers/2.jpg" width="80" height="80" alt="Ahmed Abdel Fatah" pagespeed_url_hash="32032177">
               <blockquote>
                 <p>We've used Scruby in multiple applications; The best benefits we got from using scruby are being able
                   to easily crawl the site we need with the customer and generating the excel files in
@@ -164,19 +164,23 @@
   
   <!--Embedding The owl.carousel-->
   <script type="text/javascript">
-        //Testimonials Slider (owl carousel settings)
-        $("#testimonial-carousel").owlCarousel({
-            items: 1,
-            itemsDesktop: [1199, 1],
-            itemsDesktopSmall: [980, 1],
-            itemsTablet: [768, 1],
-            itemsTabletSmall: [590, 1],
-            itemsMobile: [479, 1],
-            autoPlay: true,
-            stopOnHover: true,
-            pagination: false,
-            transitionStyle: 'fadeUp'
-        });    
+  
+    $(function() {
+          //Testimonials Slider (owl carousel settings)
+          $("#testimonial-carousel").owlCarousel({
+              items: 1,
+              itemsDesktop: [1199, 1],
+              itemsDesktopSmall: [980, 1],
+              itemsTablet: [768, 1],
+              itemsTabletSmall: [590, 1],
+              itemsMobile: [479, 1],
+              autoPlay: true,
+              stopOnHover: true,
+              pagination: false,
+              transitionStyle: 'fadeUp'
+          });  
+    }
+  
   </script>
 
 

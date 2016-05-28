@@ -9,12 +9,12 @@ module.exports = {
         'public/lib/bootstrap/dist/css/bootstrap-theme.css',
         // endbower
         // font-awesome:css
-        'public/lib/font-awesome/css/font-awesome.css'
+        'public/lib/font-awesome/css/font-awesome.css',
         // endfont-awesome
         // owl.carousel:css
-        '/public/lib/owl.carousel/dist/assets/owl.carousel.css',
-        '/public/lib/owl.carousel/dist/assets/owl.theme.default.css'
-        // endowl.carousel        
+        'public/lib/owl.carousel/dist/assets/owl.carousel.css',
+        'public/lib/owl.carousel/dist/assets/owl.theme.default.css'
+        // endowl.carousel
       ],
       js: [
         // bower:js
@@ -28,8 +28,8 @@ module.exports = {
         'public/lib/owasp-password-strength-test/owasp-password-strength-test.js',
         // endbower
         // owl.carousel:js
-        '/public/lib/owl.carousel/dist/owl.carousel.js'
-        // endowl.carousel         
+        'public/lib/owl.carousel/dist/owl.carousel.js'
+        // endowl.carousel
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']
     },
