@@ -227,6 +227,127 @@
 	}
 }
 
+.home {
+	background-size: cover;
+	background: url(/modules/core/client/img/bg/bg1.jpg) top center no-repeat;
+	padding: 80px 0 0;
+	position: relative;
+	&:after {
+		background: rgba(0, 0, 0, 0.6);
+		content: '';
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+		z-index: 0;
+	}
+
+	.logo-lg {
+		display: block;
+		height: 44px;
+		margin: 0 auto 50px;
+		position: relative;
+		width: 121px;
+		z-index: 1;
+	}
+	h1 {
+		color: #ffffff;
+		padding-top: 20px;
+		position: relative;
+		text-align: center;
+		z-index: 1;
+	}
+	p.strong {
+		color: rgba(255, 255, 255, 0.35);
+		font-size: 18px;
+		position: relative;
+		text-align: center;
+		z-index: 1;
+	}
+	.cta-wrap {
+		display: table;
+		margin: 40px auto;
+		position: relative;
+		text-align: center;
+		z-index: 1;
+	}
+
+	.btn-link {
+		color: #ffffff;
+	}
+	.cta.variant-two {
+		margin: 30px auto 10px;
+		position: relative;
+		z-index: 2;
+	}
+}
+
+.home.animated-bg {
+	animation: bgAnimate 15s linear infinite;
+	background: url(../assets/pattern1.jpg) repeat #111111;
+	&:after {
+		display: none;
+	}
+}
+
+
+.home .cta-wrap, .cta .cta-wrap {
+  margin: 40px auto;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  display: table;
+}
+
+.try-it-wrap {
+	display: table-cell;
+	vertical-align: middle;
+	small {
+		color: rgba(255, 255, 255, 0.5);
+		display: block;
+		font-size: 10px;
+		font-weight: 400;
+	}
+}
+
+
+.big-feature {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: auto;
+}
+
+
+#big-video-wrap {
+  overflow: hidden;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.cta.variant-two {
+	.success {
+		color: #ffffff;
+		display: block;
+		text-align: center;
+		i {
+			color: #6bbb36;
+			display: block;
+			font-size: 60px;
+			margin: 30px auto;
+		}
+		.lead {
+			display: block;
+			font-weight: 400;
+			margin-bottom: 20px;
+		}
+	}
+}
+
 
 @media (max-width: 767px) {
   .course-page {
