@@ -198,6 +198,36 @@
 }
 
 
+.press-articles-container {
+	background: #e6e6e6;
+	overflow: hidden;
+	padding: 1.25rem 1.25rem 0.6rem;
+	text-align: center;
+	.press-articles {
+		-ms-flex-pack: distribute;
+		-ms-flex-wrap: wrap;
+		-webkit-flex-wrap: wrap;
+		-webkit-justify-content: space-around;
+		display: -ms-flexbox;
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: flex;
+		display: table;
+		flex-wrap: wrap;
+		justify-content: space-around;
+		width: 100%;
+	}
+	.press-link {
+		display: table-cell;
+		padding: 10px;
+		vertical-align: middle;
+		img {
+			max-width: 100%;
+		}
+	}
+}
+
+
 @media (max-width: 767px) {
   .course-page {
     position: relative;

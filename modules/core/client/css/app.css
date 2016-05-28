@@ -188,6 +188,34 @@
   text-align: center;
   vertical-align: middle;
 }
+.press-articles-container {
+  background: #e6e6e6;
+  overflow: hidden;
+  padding: 1.25rem 1.25rem 0.6rem;
+  text-align: center;
+}
+.press-articles-container .press-articles {
+  -ms-flex-pack: distribute;
+  -ms-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -webkit-justify-content: space-around;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  display: table;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 100%;
+}
+.press-articles-container .press-link {
+  display: table-cell;
+  padding: 10px;
+  vertical-align: middle;
+}
+.press-articles-container .press-link img {
+  max-width: 100%;
+}
 @media (max-width: 767px) {
   .course-page {
     position: relative;
