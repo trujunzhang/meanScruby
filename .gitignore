@@ -79,6 +79,8 @@ public/lib/font-awesome
 public/lib/owasp-password-strength-test
 public/lib/owl.carousel
 
+modules/core/client/views/home.client.view1.html
+
 modules/core/client/views/header.client.view1.html
 
 
