@@ -663,11 +663,6 @@
     top: 65px;
   }
 }
-@media (max-width: 480px) {
-  .course-page h1 {
-    text-align: left;
-  }
-}
 @media (max-width: 992px) {
   .course-page .hide-on-mobile {
     display: none;
