@@ -12,9 +12,9 @@
     "angular-mocks": "~1.5.0",
     "angular-resource": "~1.5.0",
     "angular-ui-router": "~0.2.18",
-//    "bootstrap": "~3.3.6",
     "owasp-password-strength-test": "~1.3.0",
-    "font-awesome": "fontawesome#~4.6.3"
+    "font-awesome": "fontawesome#~4.6.3",
+    "owl.carousel": "^2.1.4"
   },
   "overrides": {
     "bootstrap": {
