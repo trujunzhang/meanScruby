@@ -12,8 +12,8 @@ module.exports = {
         'public/lib/font-awesome/css/font-awesome.css',
         // endfont-awesome
         // owl.carousel:css
-        'public/lib/owl.carousel/dist/assets/owl.carousel.css',
-        'public/lib/owl.carousel/dist/assets/owl.theme.default.css'
+        'public/lib/owl.carousel1/owl-carousel/owl.carousel.css',
+        'public/lib/owl.carousel1/owl-carousel/owl.transitions.css'
         // endowl.carousel
       ],
       js: [
@@ -28,7 +28,8 @@ module.exports = {
         'public/lib/owasp-password-strength-test/owasp-password-strength-test.js',
         // endbower
         // owl.carousel:js
-        'public/lib/owl.carousel/dist/owl.carousel.js'
+        'public/lib/jquery/dist/jquery.js',        
+        'public/lib/owl.carousel1/owl-carousel/owl.carousel.js'
         // endowl.carousel
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']

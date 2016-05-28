@@ -32,69 +32,71 @@
   <link href="{{favicon}}" rel="shortcut icon" type="image/x-icon">
 
   <!-- Application CSS Files -->
-  {% for cssFile in cssFiles %}<link rel="stylesheet" href="{{cssFile}}">{% endfor %}
+  {% for cssFile in cssFiles %}
+  <link rel="stylesheet" href="{{cssFile}}">
+  {% endfor %}
 </head>
 
 <body class="full-page-base-style">
 
-  <div class="course-page course-theme-red web_dev">
-    {% block content %}{% endblock %}
-  </div>
+<div class="course-page course-theme-red web_dev">
+  {% block content %}{% endblock %}
+</div>
 
   <!--Embedding The User Object-->
   <script type="text/javascript">
     var user = {{ user | json | safe }};
   </script>
 
-  <!--Load The Socket.io File-->
-  <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+<!--Load The Socket.io File-->
+<script type="text/javascript" src="/socket.io/socket.io.js"></script>
 
-  <!--Application JavaScript Files-->
-  {% for jsFile in jsFiles %}<script type="text/javascript" src="{{jsFile}}"></script>{% endfor %}
+<!--Application JavaScript Files-->
+{% for jsFile in jsFiles %}
+<script type="text/javascript" src="{{jsFile}}"></script>
+{% endfor %}
 
-  <!--{% if livereload %}-->
-  <!--&lt;!&ndash;Livereload script rendered &ndash;&gt;-->
-  <!--<script type="text/javascript" src="{{host}}:35729/livereload.js"></script>-->
-  <!--{% endif %}-->
+<!--{% if livereload %}-->
+<!--&lt;!&ndash;Livereload script rendered &ndash;&gt;-->
+<!--<script type="text/javascript" src="{{host}}:35729/livereload.js"></script>-->
+<!--{% endif %}-->
 
 
-  <!--Embedding The owl.carousel-->
-  <script>
-  
-  $(function() {
-      console.log("No referrer override.");
-      var $carousel = $("#testimonial-carousel");
-      console.log($carousel);
+<!--Embedding The owl.carousel-->
+<!--<script>-->
+<!---->
+<!--$(function() {-->
+<!--console.log("No referrer override.");-->
+<!--var $carousel = $("#testimonial-carousel");-->
+<!--console.log($carousel);-->
 
-       }
+<!--}-->
 
-  </script>
+<!--</script>-->
 
-<!--   <script type="text/javascript">
-  
-    $(function() {
+<!--<script type="text/javascript">-->
 
-      console.log("No referrer override.");
+  <!--$(function () {-->
+    <!--//Testimonials Slider (owl carousel settings)-->
+    <!--var $carousel = $("#testimonial-carousel");-->
+    <!--console.log($carousel);-->
 
-          //Testimonials Slider (owl carousel settings)
-          var $carousel = $("#testimonial-carousel")
-          console.log($carousel);
+    <!--$carousel.owlCarousel({-->
+      <!--items: 1,-->
+      <!--itemsDesktop: [1199, 1],-->
+      <!--itemsDesktopSmall: [980, 1],-->
+      <!--itemsTablet: [768, 1],-->
+      <!--itemsTabletSmall: [590, 1],-->
+      <!--itemsMobile: [479, 1],-->
+      <!--autoPlay: true,-->
+      <!--stopOnHover: true,-->
+      <!--pagination: false,-->
+      <!--transitionStyle: 'fadeUp'-->
+    <!--});-->
+  <!--});-->
 
-          $carousel.owlCarousel({
-              items: 1,
-              itemsDesktop: [1199, 1],
-              itemsDesktopSmall: [980, 1],
-              itemsTablet: [768, 1],
-              itemsTabletSmall: [590, 1],
-              itemsMobile: [479, 1],
-              autoPlay: true,
-              stopOnHover: true,
-              pagination: false,
-              transitionStyle: 'fadeUp'
-          });  
-    }
-  
-  </script> -->
+
+<!--</script>-->
 
 </body>
 
