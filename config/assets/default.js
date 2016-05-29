@@ -29,8 +29,11 @@ module.exports = {
         // endbower
         // owl.carousel:js
         'public/lib/jquery/dist/jquery.js',
-        'public/lib/owl.carousel1/owl-carousel/owl.carousel.js'
+        'public/lib/owl.carousel1/owl-carousel/owl.carousel.js',
         // endowl.carousel
+        // angular-scroll:js
+        'public/lib/angular-scroll/angular-scroll.js'
+        // endangular-scroll
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']
     },

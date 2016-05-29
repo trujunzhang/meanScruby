@@ -78,6 +78,7 @@ public/lib/jquery
 public/lib/font-awesome
 public/lib/owasp-password-strength-test
 public/lib/owl.carousel1
+public/lib/angular-scroll
 
 modules/core/client/views/home.client.view1.html
 
