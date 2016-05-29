@@ -4,13 +4,15 @@
     angular
         .module('core', ['duScroll'])
         .controller('HomeController', HomeController)
-        .directive('ngRepeatOwlCarousel', repeatOwlCarousel);
+        .directive('ngRepeatOwlCarousel', repeatOwlCarousel)
+        .directive('faqContent', faqContent);
 
     HomeController.$inject = ['$scope', '$document'];
 
     function HomeController($scope, $document) {
         var vm = this;
 
+        //faq accordian settings
         vm.groups = [
             {
                 title: 'What is Scruby?',
@@ -22,7 +24,7 @@
             }
         ];
 
-        vm.carouselInitializer = function() {
+        vm.carouselInitializer = function () {
             var $carousel = $("#testimonial-carousel");
             $carousel.owlCarousel({
                 items: 1,
@@ -36,20 +38,7 @@
                 pagination: false,
                 transitionStyle: 'fadeUp'
             });
-            
-            //faq accordian settings
-            // $('.panel-heading').click(function () {
-            //     if ($(this).find('i').hasClass('fa-angle-up fa')) {
-            //         $(this).find('i').removeClass('fa-angle-up fa').addClass('fa-angle-down fa');
-            //     } else if ($(this).find('i').hasClass('fa-angle-down fa')) {
-            //         $('.panel-heading').find('i').removeClass(' a-angle-up fa').addClass('fa-angle-down fa');
-            //         $(this).find('i').removeClass('fa-angle-down fa').addClass('fa-angle-up fa');
-            //     }
-            // });
-            
         };
-
-
     }
 
     function repeatOwlCarousel() {
@@ -58,12 +47,22 @@
             scope: {
                 carouselInit: '&'
             },
-            link: function(scope, element, attrs) {
+            link: function (scope, element, attrs) {
                 if ((scope.$parent != null)) {
                     return scope.carouselInit()();
                 }
             }
         };
     }
-    
+
+    function faqContent() {
+        return {
+            restrict: 'E',
+            scope: {
+                content: '@'
+            },
+            templateUrl: 'modules/core/client/views/faq.content.client.direcives.html'
+        };
+    }
+
 }());
