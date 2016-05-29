@@ -1684,3 +1684,17 @@
   outline: none;
   text-decoration: none;
 }
+#faq h2 {
+  font-weight: 300;
+  color: #111;
+  font-size: 32px;
+  font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+}
+#faq a {
+  font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+}
+#faq p {
+  line-height: 1.33em;
+  color: #7E7E7E;
+  font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+}
