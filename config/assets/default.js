@@ -28,7 +28,7 @@ module.exports = {
         'public/lib/owasp-password-strength-test/owasp-password-strength-test.js',
         // endbower
         // owl.carousel:js
-        'public/lib/jquery/dist/jquery.js',        
+        'public/lib/jquery/dist/jquery.js',
         'public/lib/owl.carousel1/owl-carousel/owl.carousel.js'
         // endowl.carousel
       ],

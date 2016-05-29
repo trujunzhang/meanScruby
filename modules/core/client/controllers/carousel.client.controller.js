@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -9,7 +9,7 @@
     function CarouselController() {
         var vm = this;
 
-        vm.carouselInitializer = function () {
+        vm.carouselInitializer = function() {
             var $carousel = $("#testimonial-carousel");
             $carousel.owlCarousel({
                 items: 1,
@@ -32,7 +32,7 @@
             scope: {
                 carouselInit: '&'
             },
-            link: function (scope, element, attrs) {
+            link: function(scope, element, attrs) {
                 if ((scope.$parent != null)) {
                     return scope.carouselInit()();
                 }
