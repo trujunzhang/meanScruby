@@ -15,7 +15,7 @@ var app,
   agent,
   credentials,
   user,
-  article;
+  itune;
 
 /**
  * Article routes tests
@@ -48,9 +48,9 @@ describe('Article CRUD tests', function () {
       provider: 'local'
     });
 
-    // Save a user to the test db and create new article
+    // Save a user to the test db and create new itune
     user.save(function () {
-      article = {
+      itune = {
         title: 'Article Title',
         content: 'Article Content'
       };
@@ -59,7 +59,7 @@ describe('Article CRUD tests', function () {
     });
   });
 
-  it('should be able to save an article if logged in', function (done) {
+  it('should be able to save an itune if logged in', function (done) {
     agent.post('/api/auth/signin')
       .send(credentials)
       .expect(200)
@@ -72,30 +72,30 @@ describe('Article CRUD tests', function () {
         // Get the userId
         var userId = user.id;
 
-        // Save a new article
-        agent.post('/api/articles')
-          .send(article)
+        // Save a new itune
+        agent.post('/api/itunes')
+          .send(itune)
           .expect(200)
-          .end(function (articleSaveErr, articleSaveRes) {
-            // Handle article save error
-            if (articleSaveErr) {
-              return done(articleSaveErr);
+          .end(function (ituneSaveErr, ituneSaveRes) {
+            // Handle itune save error
+            if (ituneSaveErr) {
+              return done(ituneSaveErr);
             }
 
-            // Get a list of articles
-            agent.get('/api/articles')
-              .end(function (articlesGetErr, articlesGetRes) {
-                // Handle article save error
-                if (articlesGetErr) {
-                  return done(articlesGetErr);
+            // Get a list of itunes
+            agent.get('/api/itunes')
+              .end(function (itunesGetErr, itunesGetRes) {
+                // Handle itune save error
+                if (itunesGetErr) {
+                  return done(itunesGetErr);
                 }
 
-                // Get articles list
-                var articles = articlesGetRes.body;
+                // Get itunes list
+                var itunes = itunesGetRes.body;
 
                 // Set assertions
-                (articles[0].user._id).should.equal(userId);
-                (articles[0].title).should.match('Article Title');
+                (itunes[0].user._id).should.equal(userId);
+                (itunes[0].title).should.match('Article Title');
 
                 // Call the assertion callback
                 done();
@@ -104,19 +104,19 @@ describe('Article CRUD tests', function () {
       });
   });
 
-  it('should not be able to save an article if not logged in', function (done) {
-    agent.post('/api/articles')
-      .send(article)
+  it('should not be able to save an itune if not logged in', function (done) {
+    agent.post('/api/itunes')
+      .send(itune)
       .expect(403)
-      .end(function (articleSaveErr, articleSaveRes) {
+      .end(function (ituneSaveErr, ituneSaveRes) {
         // Call the assertion callback
-        done(articleSaveErr);
+        done(ituneSaveErr);
       });
   });
 
-  it('should not be able to save an article if no title is provided', function (done) {
+  it('should not be able to save an itune if no title is provided', function (done) {
     // Invalidate title field
-    article.title = '';
+    itune.title = '';
 
     agent.post('/api/auth/signin')
       .send(credentials)
@@ -130,21 +130,21 @@ describe('Article CRUD tests', function () {
         // Get the userId
         var userId = user.id;
 
-        // Save a new article
-        agent.post('/api/articles')
-          .send(article)
+        // Save a new itune
+        agent.post('/api/itunes')
+          .send(itune)
           .expect(400)
-          .end(function (articleSaveErr, articleSaveRes) {
+          .end(function (ituneSaveErr, ituneSaveRes) {
             // Set message assertion
-            (articleSaveRes.body.message).should.match('Title cannot be blank');
+            (ituneSaveRes.body.message).should.match('Title cannot be blank');
 
-            // Handle article save error
-            done(articleSaveErr);
+            // Handle itune save error
+            done(ituneSaveErr);
           });
       });
   });
 
-  it('should be able to update an article if signed in', function (done) {
+  it('should be able to update an itune if signed in', function (done) {
     agent.post('/api/auth/signin')
       .send(credentials)
       .expect(200)
@@ -157,32 +157,32 @@ describe('Article CRUD tests', function () {
         // Get the userId
         var userId = user.id;
 
-        // Save a new article
-        agent.post('/api/articles')
-          .send(article)
+        // Save a new itune
+        agent.post('/api/itunes')
+          .send(itune)
           .expect(200)
-          .end(function (articleSaveErr, articleSaveRes) {
-            // Handle article save error
-            if (articleSaveErr) {
-              return done(articleSaveErr);
+          .end(function (ituneSaveErr, ituneSaveRes) {
+            // Handle itune save error
+            if (ituneSaveErr) {
+              return done(ituneSaveErr);
             }
 
-            // Update article title
-            article.title = 'WHY YOU GOTTA BE SO MEAN?';
+            // Update itune title
+            itune.title = 'WHY YOU GOTTA BE SO MEAN?';
 
-            // Update an existing article
-            agent.put('/api/articles/' + articleSaveRes.body._id)
-              .send(article)
+            // Update an existing itune
+            agent.put('/api/itunes/' + ituneSaveRes.body._id)
+              .send(itune)
               .expect(200)
-              .end(function (articleUpdateErr, articleUpdateRes) {
-                // Handle article update error
-                if (articleUpdateErr) {
-                  return done(articleUpdateErr);
+              .end(function (ituneUpdateErr, ituneUpdateRes) {
+                // Handle itune update error
+                if (ituneUpdateErr) {
+                  return done(ituneUpdateErr);
                 }
 
                 // Set assertions
-                (articleUpdateRes.body._id).should.equal(articleSaveRes.body._id);
-                (articleUpdateRes.body.title).should.match('WHY YOU GOTTA BE SO MEAN?');
+                (ituneUpdateRes.body._id).should.equal(ituneSaveRes.body._id);
+                (ituneUpdateRes.body.title).should.match('WHY YOU GOTTA BE SO MEAN?');
 
                 // Call the assertion callback
                 done();
@@ -191,14 +191,14 @@ describe('Article CRUD tests', function () {
       });
   });
 
-  it('should be able to get a list of articles if not signed in', function (done) {
-    // Create new article model instance
-    var articleObj = new Article(article);
+  it('should be able to get a list of itunes if not signed in', function (done) {
+    // Create new itune model instance
+    var ituneObj = new Article(itune);
 
-    // Save the article
-    articleObj.save(function () {
-      // Request articles
-      request(app).get('/api/articles')
+    // Save the itune
+    ituneObj.save(function () {
+      // Request itunes
+      request(app).get('/api/itunes')
         .end(function (req, res) {
           // Set assertion
           res.body.should.be.instanceof(Array).and.have.lengthOf(1);
@@ -210,16 +210,16 @@ describe('Article CRUD tests', function () {
     });
   });
 
-  it('should be able to get a single article if not signed in', function (done) {
-    // Create new article model instance
-    var articleObj = new Article(article);
+  it('should be able to get a single itune if not signed in', function (done) {
+    // Create new itune model instance
+    var ituneObj = new Article(itune);
 
-    // Save the article
-    articleObj.save(function () {
-      request(app).get('/api/articles/' + articleObj._id)
+    // Save the itune
+    ituneObj.save(function () {
+      request(app).get('/api/itunes/' + ituneObj._id)
         .end(function (req, res) {
           // Set assertion
-          res.body.should.be.instanceof(Object).and.have.property('title', article.title);
+          res.body.should.be.instanceof(Object).and.have.property('title', itune.title);
 
           // Call the assertion callback
           done();
@@ -227,9 +227,9 @@ describe('Article CRUD tests', function () {
     });
   });
 
-  it('should return proper error for single article with an invalid Id, if not signed in', function (done) {
+  it('should return proper error for single itune with an invalid Id, if not signed in', function (done) {
     // test is not a valid mongoose Id
-    request(app).get('/api/articles/test')
+    request(app).get('/api/itunes/test')
       .end(function (req, res) {
         // Set assertion
         res.body.should.be.instanceof(Object).and.have.property('message', 'Article is invalid');
@@ -239,19 +239,19 @@ describe('Article CRUD tests', function () {
       });
   });
 
-  it('should return proper error for single article which doesnt exist, if not signed in', function (done) {
-    // This is a valid mongoose Id but a non-existent article
-    request(app).get('/api/articles/559e9cd815f80b4c256a8f41')
+  it('should return proper error for single itune which doesnt exist, if not signed in', function (done) {
+    // This is a valid mongoose Id but a non-existent itune
+    request(app).get('/api/itunes/559e9cd815f80b4c256a8f41')
       .end(function (req, res) {
         // Set assertion
-        res.body.should.be.instanceof(Object).and.have.property('message', 'No article with that identifier has been found');
+        res.body.should.be.instanceof(Object).and.have.property('message', 'No itune with that identifier has been found');
 
         // Call the assertion callback
         done();
       });
   });
 
-  it('should be able to delete an article if signed in', function (done) {
+  it('should be able to delete an itune if signed in', function (done) {
     agent.post('/api/auth/signin')
       .send(credentials)
       .expect(200)
@@ -264,28 +264,28 @@ describe('Article CRUD tests', function () {
         // Get the userId
         var userId = user.id;
 
-        // Save a new article
-        agent.post('/api/articles')
-          .send(article)
+        // Save a new itune
+        agent.post('/api/itunes')
+          .send(itune)
           .expect(200)
-          .end(function (articleSaveErr, articleSaveRes) {
-            // Handle article save error
-            if (articleSaveErr) {
-              return done(articleSaveErr);
+          .end(function (ituneSaveErr, ituneSaveRes) {
+            // Handle itune save error
+            if (ituneSaveErr) {
+              return done(ituneSaveErr);
             }
 
-            // Delete an existing article
-            agent.delete('/api/articles/' + articleSaveRes.body._id)
-              .send(article)
+            // Delete an existing itune
+            agent.delete('/api/itunes/' + ituneSaveRes.body._id)
+              .send(itune)
               .expect(200)
-              .end(function (articleDeleteErr, articleDeleteRes) {
-                // Handle article error error
-                if (articleDeleteErr) {
-                  return done(articleDeleteErr);
+              .end(function (ituneDeleteErr, ituneDeleteRes) {
+                // Handle itune error error
+                if (ituneDeleteErr) {
+                  return done(ituneDeleteErr);
                 }
 
                 // Set assertions
-                (articleDeleteRes.body._id).should.equal(articleSaveRes.body._id);
+                (ituneDeleteRes.body._id).should.equal(ituneSaveRes.body._id);
 
                 // Call the assertion callback
                 done();
@@ -294,30 +294,30 @@ describe('Article CRUD tests', function () {
       });
   });
 
-  it('should not be able to delete an article if not signed in', function (done) {
-    // Set article user
-    article.user = user;
+  it('should not be able to delete an itune if not signed in', function (done) {
+    // Set itune user
+    itune.user = user;
 
-    // Create new article model instance
-    var articleObj = new Article(article);
+    // Create new itune model instance
+    var ituneObj = new Article(itune);
 
-    // Save the article
-    articleObj.save(function () {
-      // Try deleting article
-      request(app).delete('/api/articles/' + articleObj._id)
+    // Save the itune
+    ituneObj.save(function () {
+      // Try deleting itune
+      request(app).delete('/api/itunes/' + ituneObj._id)
         .expect(403)
-        .end(function (articleDeleteErr, articleDeleteRes) {
+        .end(function (ituneDeleteErr, ituneDeleteRes) {
           // Set message assertion
-          (articleDeleteRes.body.message).should.match('User is not authorized');
+          (ituneDeleteRes.body.message).should.match('User is not authorized');
 
-          // Handle article error error
-          done(articleDeleteErr);
+          // Handle itune error error
+          done(ituneDeleteErr);
         });
 
     });
   });
 
-  it('should be able to get a single article that has an orphaned user reference', function (done) {
+  it('should be able to get a single itune that has an orphaned user reference', function (done) {
     // Create orphan user creds
     var _creds = {
       username: 'orphan',
@@ -353,22 +353,22 @@ describe('Article CRUD tests', function () {
           // Get the userId
           var orphanId = orphan._id;
 
-          // Save a new article
-          agent.post('/api/articles')
-            .send(article)
+          // Save a new itune
+          agent.post('/api/itunes')
+            .send(itune)
             .expect(200)
-            .end(function (articleSaveErr, articleSaveRes) {
-              // Handle article save error
-              if (articleSaveErr) {
-                return done(articleSaveErr);
+            .end(function (ituneSaveErr, ituneSaveRes) {
+              // Handle itune save error
+              if (ituneSaveErr) {
+                return done(ituneSaveErr);
               }
 
-              // Set assertions on new article
-              (articleSaveRes.body.title).should.equal(article.title);
-              should.exist(articleSaveRes.body.user);
-              should.equal(articleSaveRes.body.user._id, orphanId);
+              // Set assertions on new itune
+              (ituneSaveRes.body.title).should.equal(itune.title);
+              should.exist(ituneSaveRes.body.user);
+              should.equal(ituneSaveRes.body.user._id, orphanId);
 
-              // force the article to have an orphaned user reference
+              // force the itune to have an orphaned user reference
               orphan.remove(function () {
                 // now signin with valid user
                 agent.post('/api/auth/signin')
@@ -380,19 +380,19 @@ describe('Article CRUD tests', function () {
                       return done(err);
                     }
 
-                    // Get the article
-                    agent.get('/api/articles/' + articleSaveRes.body._id)
+                    // Get the itune
+                    agent.get('/api/itunes/' + ituneSaveRes.body._id)
                       .expect(200)
-                      .end(function (articleInfoErr, articleInfoRes) {
-                        // Handle article error
-                        if (articleInfoErr) {
-                          return done(articleInfoErr);
+                      .end(function (ituneInfoErr, ituneInfoRes) {
+                        // Handle itune error
+                        if (ituneInfoErr) {
+                          return done(ituneInfoErr);
                         }
 
                         // Set assertions
-                        (articleInfoRes.body._id).should.equal(articleSaveRes.body._id);
-                        (articleInfoRes.body.title).should.equal(article.title);
-                        should.equal(articleInfoRes.body.user, undefined);
+                        (ituneInfoRes.body._id).should.equal(ituneSaveRes.body._id);
+                        (ituneInfoRes.body.title).should.equal(itune.title);
+                        should.equal(ituneInfoRes.body.user, undefined);
 
                         // Call the assertion callback
                         done();
@@ -404,13 +404,13 @@ describe('Article CRUD tests', function () {
     });
   });
 
-  it('should be able to get a single article if signed in and verify the custom "isCurrentUserOwner" field is set to "true"', function (done) {
-    // Create new article model instance
-    article.user = user;
-    var articleObj = new Article(article);
+  it('should be able to get a single itune if signed in and verify the custom "isCurrentUserOwner" field is set to "true"', function (done) {
+    // Create new itune model instance
+    itune.user = user;
+    var ituneObj = new Article(itune);
 
-    // Save the article
-    articleObj.save(function () {
+    // Save the itune
+    ituneObj.save(function () {
       agent.post('/api/auth/signin')
         .send(credentials)
         .expect(200)
@@ -423,31 +423,31 @@ describe('Article CRUD tests', function () {
           // Get the userId
           var userId = user.id;
 
-          // Save a new article
-          agent.post('/api/articles')
-            .send(article)
+          // Save a new itune
+          agent.post('/api/itunes')
+            .send(itune)
             .expect(200)
-            .end(function (articleSaveErr, articleSaveRes) {
-              // Handle article save error
-              if (articleSaveErr) {
-                return done(articleSaveErr);
+            .end(function (ituneSaveErr, ituneSaveRes) {
+              // Handle itune save error
+              if (ituneSaveErr) {
+                return done(ituneSaveErr);
               }
 
-              // Get the article
-              agent.get('/api/articles/' + articleSaveRes.body._id)
+              // Get the itune
+              agent.get('/api/itunes/' + ituneSaveRes.body._id)
                 .expect(200)
-                .end(function (articleInfoErr, articleInfoRes) {
-                  // Handle article error
-                  if (articleInfoErr) {
-                    return done(articleInfoErr);
+                .end(function (ituneInfoErr, ituneInfoRes) {
+                  // Handle itune error
+                  if (ituneInfoErr) {
+                    return done(ituneInfoErr);
                   }
 
                   // Set assertions
-                  (articleInfoRes.body._id).should.equal(articleSaveRes.body._id);
-                  (articleInfoRes.body.title).should.equal(article.title);
+                  (ituneInfoRes.body._id).should.equal(ituneSaveRes.body._id);
+                  (ituneInfoRes.body.title).should.equal(itune.title);
 
                   // Assert that the "isCurrentUserOwner" field is set to true since the current User created it
-                  (articleInfoRes.body.isCurrentUserOwner).should.equal(true);
+                  (ituneInfoRes.body.isCurrentUserOwner).should.equal(true);
 
                   // Call the assertion callback
                   done();
@@ -457,16 +457,16 @@ describe('Article CRUD tests', function () {
     });
   });
 
-  it('should be able to get a single article if not signed in and verify the custom "isCurrentUserOwner" field is set to "false"', function (done) {
-    // Create new article model instance
-    var articleObj = new Article(article);
+  it('should be able to get a single itune if not signed in and verify the custom "isCurrentUserOwner" field is set to "false"', function (done) {
+    // Create new itune model instance
+    var ituneObj = new Article(itune);
 
-    // Save the article
-    articleObj.save(function () {
-      request(app).get('/api/articles/' + articleObj._id)
+    // Save the itune
+    ituneObj.save(function () {
+      request(app).get('/api/itunes/' + ituneObj._id)
         .end(function (req, res) {
           // Set assertion
-          res.body.should.be.instanceof(Object).and.have.property('title', article.title);
+          res.body.should.be.instanceof(Object).and.have.property('title', itune.title);
           // Assert the custom field "isCurrentUserOwner" is set to false for the un-authenticated User
           res.body.should.be.instanceof(Object).and.have.property('isCurrentUserOwner', false);
           // Call the assertion callback
@@ -475,7 +475,7 @@ describe('Article CRUD tests', function () {
     });
   });
 
-  it('should be able to get single article, that a different user created, if logged in & verify the "isCurrentUserOwner" field is set to "false"', function (done) {
+  it('should be able to get single itune, that a different user created, if logged in & verify the "isCurrentUserOwner" field is set to "false"', function (done) {
     // Create temporary user creds
     var _creds = {
       username: 'temp',
@@ -512,20 +512,20 @@ describe('Article CRUD tests', function () {
           // Get the userId
           var userId = user._id;
 
-          // Save a new article
-          agent.post('/api/articles')
-            .send(article)
+          // Save a new itune
+          agent.post('/api/itunes')
+            .send(itune)
             .expect(200)
-            .end(function (articleSaveErr, articleSaveRes) {
-              // Handle article save error
-              if (articleSaveErr) {
-                return done(articleSaveErr);
+            .end(function (ituneSaveErr, ituneSaveRes) {
+              // Handle itune save error
+              if (ituneSaveErr) {
+                return done(ituneSaveErr);
               }
 
-              // Set assertions on new article
-              (articleSaveRes.body.title).should.equal(article.title);
-              should.exist(articleSaveRes.body.user);
-              should.equal(articleSaveRes.body.user._id, userId);
+              // Set assertions on new itune
+              (ituneSaveRes.body.title).should.equal(itune.title);
+              should.exist(ituneSaveRes.body.user);
+              should.equal(ituneSaveRes.body.user._id, userId);
 
               // now signin with the temporary user
               agent.post('/api/auth/signin')
@@ -537,20 +537,20 @@ describe('Article CRUD tests', function () {
                     return done(err);
                   }
 
-                  // Get the article
-                  agent.get('/api/articles/' + articleSaveRes.body._id)
+                  // Get the itune
+                  agent.get('/api/itunes/' + ituneSaveRes.body._id)
                     .expect(200)
-                    .end(function (articleInfoErr, articleInfoRes) {
-                      // Handle article error
-                      if (articleInfoErr) {
-                        return done(articleInfoErr);
+                    .end(function (ituneInfoErr, ituneInfoRes) {
+                      // Handle itune error
+                      if (ituneInfoErr) {
+                        return done(ituneInfoErr);
                       }
 
                       // Set assertions
-                      (articleInfoRes.body._id).should.equal(articleSaveRes.body._id);
-                      (articleInfoRes.body.title).should.equal(article.title);
+                      (ituneInfoRes.body._id).should.equal(ituneSaveRes.body._id);
+                      (ituneInfoRes.body.title).should.equal(itune.title);
                       // Assert that the custom field "isCurrentUserOwner" is set to false since the current User didn't create it
-                      (articleInfoRes.body.isCurrentUserOwner).should.equal(false);
+                      (ituneInfoRes.body.isCurrentUserOwner).should.equal(false);
 
                       // Call the assertion callback
                       done();

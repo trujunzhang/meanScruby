@@ -46,7 +46,7 @@
       Authentication = _Authentication_;
       ArticlesService = _ArticlesService_;
 
-      // create mock article
+      // create mock itune
       mockArticle = new ArticlesService({
         _id: '525a8422f6d0f87f0e407a33',
         title: 'An Article about MEAN',
@@ -61,7 +61,7 @@
       // Initialize the Articles controller.
       ArticlesController = $controller('ArticlesController as vm', {
         $scope: $scope,
-        articleResolve: {}
+        ituneResolve: {}
       });
 
       // Spy on state go
@@ -72,32 +72,32 @@
       var sampleArticlePostData;
 
       beforeEach(function () {
-        // Create a sample article object
+        // Create a sample itune object
         sampleArticlePostData = new ArticlesService({
           title: 'An Article about MEAN',
           content: 'MEAN rocks!'
         });
 
-        $scope.vm.article = sampleArticlePostData;
+        $scope.vm.itune = sampleArticlePostData;
       });
 
       it('should send a POST request with the form input values and then locate to new object URL', inject(function (ArticlesService) {
         // Set POST response
-        $httpBackend.expectPOST('api/articles', sampleArticlePostData).respond(mockArticle);
+        $httpBackend.expectPOST('api/itunes', sampleArticlePostData).respond(mockArticle);
 
         // Run controller functionality
         $scope.vm.save(true);
         $httpBackend.flush();
 
-        // Test URL redirection after the article was created
-        expect($state.go).toHaveBeenCalledWith('articles.view', {
-          articleId: mockArticle._id
+        // Test URL redirection after the itune was created
+        expect($state.go).toHaveBeenCalledWith('itunes.view', {
+          ituneId: mockArticle._id
         });
       }));
 
       it('should set $scope.vm.error if error', function () {
         var errorMessage = 'this is an error message';
-        $httpBackend.expectPOST('api/articles', sampleArticlePostData).respond(400, {
+        $httpBackend.expectPOST('api/itunes', sampleArticlePostData).respond(400, {
           message: errorMessage
         });
 
@@ -110,27 +110,27 @@
 
     describe('vm.save() as update', function () {
       beforeEach(function () {
-        // Mock article in $scope
-        $scope.vm.article = mockArticle;
+        // Mock itune in $scope
+        $scope.vm.itune = mockArticle;
       });
 
-      it('should update a valid article', inject(function (ArticlesService) {
+      it('should update a valid itune', inject(function (ArticlesService) {
         // Set PUT response
-        $httpBackend.expectPUT(/api\/articles\/([0-9a-fA-F]{24})$/).respond();
+        $httpBackend.expectPUT(/api\/itunes\/([0-9a-fA-F]{24})$/).respond();
 
         // Run controller functionality
         $scope.vm.save(true);
         $httpBackend.flush();
 
         // Test URL location to new object
-        expect($state.go).toHaveBeenCalledWith('articles.view', {
-          articleId: mockArticle._id
+        expect($state.go).toHaveBeenCalledWith('itunes.view', {
+          ituneId: mockArticle._id
         });
       }));
 
       it('should set $scope.vm.error if error', inject(function (ArticlesService) {
         var errorMessage = 'error';
-        $httpBackend.expectPUT(/api\/articles\/([0-9a-fA-F]{24})$/).respond(400, {
+        $httpBackend.expectPUT(/api\/itunes\/([0-9a-fA-F]{24})$/).respond(400, {
           message: errorMessage
         });
 
@@ -143,23 +143,23 @@
 
     describe('vm.remove()', function () {
       beforeEach(function () {
-        // Setup articles
-        $scope.vm.article = mockArticle;
+        // Setup itunes
+        $scope.vm.itune = mockArticle;
       });
 
-      it('should delete the article and redirect to articles', function () {
+      it('should delete the itune and redirect to itunes', function () {
         // Return true on confirm message
         spyOn(window, 'confirm').and.returnValue(true);
 
-        $httpBackend.expectDELETE(/api\/articles\/([0-9a-fA-F]{24})$/).respond(204);
+        $httpBackend.expectDELETE(/api\/itunes\/([0-9a-fA-F]{24})$/).respond(204);
 
         $scope.vm.remove();
         $httpBackend.flush();
 
-        expect($state.go).toHaveBeenCalledWith('articles.list');
+        expect($state.go).toHaveBeenCalledWith('itunes.list');
       });
 
-      it('should should not delete the article and not redirect', function () {
+      it('should should not delete the itune and not redirect', function () {
         // Return false on confirm message
         spyOn(window, 'confirm').and.returnValue(false);
 

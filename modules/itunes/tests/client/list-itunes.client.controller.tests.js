@@ -46,7 +46,7 @@
       Authentication = _Authentication_;
       ArticlesService = _ArticlesService_;
 
-      // create mock article
+      // create mock itune
       mockArticle = new ArticlesService({
         _id: '525a8422f6d0f87f0e407a33',
         title: 'An Article about MEAN',
@@ -74,17 +74,17 @@
         mockArticleList = [mockArticle, mockArticle];
       });
 
-      it('should send a GET request and return all articles', inject(function (ArticlesService) {
+      it('should send a GET request and return all itunes', inject(function (ArticlesService) {
         // Set POST response
-        $httpBackend.expectGET('api/articles').respond(mockArticleList);
+        $httpBackend.expectGET('api/itunes').respond(mockArticleList);
 
 
         $httpBackend.flush();
 
         // Test form inputs are reset
-        expect($scope.vm.articles.length).toEqual(2);
-        expect($scope.vm.articles[0]).toEqual(mockArticle);
-        expect($scope.vm.articles[1]).toEqual(mockArticle);
+        expect($scope.vm.itunes.length).toEqual(2);
+        expect($scope.vm.itunes[0]).toEqual(mockArticle);
+        expect($scope.vm.itunes[1]).toEqual(mockArticle);
 
       }));
     });

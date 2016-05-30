@@ -2,14 +2,14 @@
   'use strict';
 
   angular
-    .module('articles.services')
+    .module('itunes.services')
     .factory('ArticlesService', ArticlesService);
 
   ArticlesService.$inject = ['$resource'];
 
   function ArticlesService($resource) {
-    return $resource('api/articles/:articleId', {
-      articleId: '@_id'
+    return $resource('api/itunes/:ituneId', {
+      ituneId: '@_id'
     }, {
       update: {
         method: 'PUT'

@@ -2,63 +2,63 @@
   'use strict';
 
   angular
-    .module('articles.routes')
+    .module('itunes.routes')
     .config(routeConfig);
 
   routeConfig.$inject = ['$stateProvider'];
 
   function routeConfig($stateProvider) {
     $stateProvider
-      .state('articles', {
+      .state('itunes', {
         abstract: true,
-        url: '/articles',
+        url: '/itunes',
         template: '<ui-view/>'
       })
-      .state('articles.list', {
+      .state('itunes.list', {
         url: '',
-        templateUrl: 'modules/articles/client/views/list-articles.client.view.html',
+        templateUrl: 'modules/itunes/client/views/list-itunes.client.view.html',
         controller: 'ArticlesListController',
         controllerAs: 'vm',
         data: {
           pageTitle: 'Articles List'
         }
       })
-      .state('articles.create', {
+      .state('itunes.create', {
         url: '/create',
-        templateUrl: 'modules/articles/client/views/form-article.client.view.html',
+        templateUrl: 'modules/itunes/client/views/form-itune.client.view.html',
         controller: 'ArticlesController',
         controllerAs: 'vm',
         resolve: {
-          articleResolve: newArticle
+          ituneResolve: newArticle
         },
         data: {
           roles: ['user', 'admin'],
           pageTitle: 'Articles Create'
         }
       })
-      .state('articles.edit', {
-        url: '/:articleId/edit',
-        templateUrl: 'modules/articles/client/views/form-article.client.view.html',
+      .state('itunes.edit', {
+        url: '/:ituneId/edit',
+        templateUrl: 'modules/itunes/client/views/form-itune.client.view.html',
         controller: 'ArticlesController',
         controllerAs: 'vm',
         resolve: {
-          articleResolve: getArticle
+          ituneResolve: getArticle
         },
         data: {
           roles: ['user', 'admin'],
-          pageTitle: 'Edit Article {{ articleResolve.title }}'
+          pageTitle: 'Edit Article {{ ituneResolve.title }}'
         }
       })
-      .state('articles.view', {
-        url: '/:articleId',
-        templateUrl: 'modules/articles/client/views/view-article.client.view.html',
+      .state('itunes.view', {
+        url: '/:ituneId',
+        templateUrl: 'modules/itunes/client/views/view-itune.client.view.html',
         controller: 'ArticlesController',
         controllerAs: 'vm',
         resolve: {
-          articleResolve: getArticle
+          ituneResolve: getArticle
         },
         data: {
-          pageTitle: 'Article {{ articleResolve.title }}'
+          pageTitle: 'Article {{ ituneResolve.title }}'
         }
       });
   }
@@ -67,7 +67,7 @@
 
   function getArticle($stateParams, ArticlesService) {
     return ArticlesService.get({
-      articleId: $stateParams.articleId
+      ituneId: $stateParams.ituneId
     }).$promise;
   }
 

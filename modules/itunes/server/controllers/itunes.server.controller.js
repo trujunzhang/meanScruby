@@ -9,70 +9,70 @@ var path = require('path'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
 /**
- * Create an article
+ * Create an itune
  */
 exports.create = function (req, res) {
-  var article = new Article(req.body);
-  article.user = req.user;
+  var itune = new Article(req.body);
+  itune.user = req.user;
 
-  article.save(function (err) {
+  itune.save(function (err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.json(article);
+      res.json(itune);
     }
   });
 };
 
 /**
- * Show the current article
+ * Show the current itune
  */
 exports.read = function (req, res) {
   // convert mongoose document to JSON
-  var article = req.article ? req.article.toJSON() : {};
+  var itune = req.itune ? req.itune.toJSON() : {};
 
   // Add a custom field to the Article, for determining if the current User is the "owner".
   // NOTE: This field is NOT persisted to the database, since it doesn't exist in the Article model.
-  article.isCurrentUserOwner = !!(req.user && article.user && article.user._id.toString() === req.user._id.toString());
+  itune.isCurrentUserOwner = !!(req.user && itune.user && itune.user._id.toString() === req.user._id.toString());
 
-  res.json(article);
+  res.json(itune);
 };
 
 /**
- * Update an article
+ * Update an itune
  */
 exports.update = function (req, res) {
-  var article = req.article;
+  var itune = req.itune;
 
-  article.title = req.body.title;
-  article.content = req.body.content;
+  itune.title = req.body.title;
+  itune.content = req.body.content;
 
-  article.save(function (err) {
+  itune.save(function (err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.json(article);
+      res.json(itune);
     }
   });
 };
 
 /**
- * Delete an article
+ * Delete an itune
  */
 exports.delete = function (req, res) {
-  var article = req.article;
+  var itune = req.itune;
 
-  article.remove(function (err) {
+  itune.remove(function (err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.json(article);
+      res.json(itune);
     }
   });
 };
@@ -81,13 +81,13 @@ exports.delete = function (req, res) {
  * List of Articles
  */
 exports.list = function (req, res) {
-  Article.find().sort('-created').populate('user', 'displayName').exec(function (err, articles) {
+  Article.find().sort('-created').populate('user', 'displayName').exec(function (err, itunes) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.json(articles);
+      res.json(itunes);
     }
   });
 };
@@ -95,7 +95,7 @@ exports.list = function (req, res) {
 /**
  * Article middleware
  */
-exports.articleByID = function (req, res, next, id) {
+exports.ituneByID = function (req, res, next, id) {
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send({
@@ -103,15 +103,15 @@ exports.articleByID = function (req, res, next, id) {
     });
   }
 
-  Article.findById(id).populate('user', 'displayName').exec(function (err, article) {
+  Article.findById(id).populate('user', 'displayName').exec(function (err, itune) {
     if (err) {
       return next(err);
-    } else if (!article) {
+    } else if (!itune) {
       return res.status(404).send({
-        message: 'No article with that identifier has been found'
+        message: 'No itune with that identifier has been found'
       });
     }
-    req.article = article;
+    req.itune = itune;
     next();
   });
 };

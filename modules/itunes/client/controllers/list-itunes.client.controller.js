@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('articles')
+    .module('itunes')
     .controller('ArticlesListController', ArticlesListController);
 
   ArticlesListController.$inject = ['ArticlesService'];
@@ -10,6 +10,6 @@
   function ArticlesListController(ArticlesService) {
     var vm = this;
 
-    vm.articles = ArticlesService.query();
+    vm.itunes = ArticlesService.query();
   }
 }());

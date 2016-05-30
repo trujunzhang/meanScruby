@@ -15,28 +15,28 @@ exports.invokeRolesPolicies = function () {
   acl.allow([{
     roles: ['admin'],
     allows: [{
-      resources: '/api/articles',
+      resources: '/api/itunes',
       permissions: '*'
     }, {
-      resources: '/api/articles/:articleId',
+      resources: '/api/itunes/:ituneId',
       permissions: '*'
     }]
   }, {
     roles: ['user'],
     allows: [{
-      resources: '/api/articles',
+      resources: '/api/itunes',
       permissions: ['get', 'post']
     }, {
-      resources: '/api/articles/:articleId',
+      resources: '/api/itunes/:ituneId',
       permissions: ['get']
     }]
   }, {
     roles: ['guest'],
     allows: [{
-      resources: '/api/articles',
+      resources: '/api/itunes',
       permissions: ['get']
     }, {
-      resources: '/api/articles/:articleId',
+      resources: '/api/itunes/:ituneId',
       permissions: ['get']
     }]
   }]);
@@ -48,8 +48,8 @@ exports.invokeRolesPolicies = function () {
 exports.isAllowed = function (req, res, next) {
   var roles = (req.user) ? req.user.roles : ['guest'];
 
-  // If an article is being processed and the current user created it then allow any manipulation
-  if (req.article && req.user && req.article.user && req.article.user.id === req.user.id) {
+  // If an itune is being processed and the current user created it then allow any manipulation
+  if (req.itune && req.user && req.itune.user && req.itune.user.id === req.user.id) {
     return next();
   }
 

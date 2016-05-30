@@ -3,21 +3,21 @@
 /**
  * Module dependencies
  */
-var articlesPolicy = require('../policies/articles.server.policy'),
-  articles = require('../controllers/articles.server.controller');
+var itunesPolicy = require('../policies/itunes.server.policy'),
+  itunes = require('../controllers/itunes.server.controller');
 
 module.exports = function (app) {
   // Articles collection routes
-  app.route('/api/articles').all(articlesPolicy.isAllowed)
-    .get(articles.list)
-    .post(articles.create);
+  app.route('/api/itunes').all(itunesPolicy.isAllowed)
+    .get(itunes.list)
+    .post(itunes.create);
 
-  // Single article routes
-  app.route('/api/articles/:articleId').all(articlesPolicy.isAllowed)
-    .get(articles.read)
-    .put(articles.update)
-    .delete(articles.delete);
+  // Single itune routes
+  app.route('/api/itunes/:ituneId').all(itunesPolicy.isAllowed)
+    .get(itunes.read)
+    .put(itunes.update)
+    .delete(itunes.delete);
 
-  // Finish by binding the article middleware
-  app.param('articleId', articles.articleByID);
+  // Finish by binding the itune middleware
+  app.param('ituneId', itunes.ituneByID);
 };
