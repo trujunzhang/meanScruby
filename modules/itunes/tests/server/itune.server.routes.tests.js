@@ -5,7 +5,7 @@ var should = require('should'),
   path = require('path'),
   mongoose = require('mongoose'),
   User = mongoose.model('User'),
-  Article = mongoose.model('Article'),
+  Itune = mongoose.model('Itune'),
   express = require(path.resolve('./config/lib/express'));
 
 /**
@@ -18,9 +18,9 @@ var app,
   itune;
 
 /**
- * Article routes tests
+ * Itune routes tests
  */
-describe('Article CRUD tests', function () {
+describe('Itune CRUD tests', function () {
 
   before(function (done) {
     // Get application
@@ -51,8 +51,8 @@ describe('Article CRUD tests', function () {
     // Save a user to the test db and create new itune
     user.save(function () {
       itune = {
-        title: 'Article Title',
-        content: 'Article Content'
+        title: 'Itune Title',
+        content: 'Itune Content'
       };
 
       done();
@@ -95,7 +95,7 @@ describe('Article CRUD tests', function () {
 
                 // Set assertions
                 (itunes[0].user._id).should.equal(userId);
-                (itunes[0].title).should.match('Article Title');
+                (itunes[0].title).should.match('Itune Title');
 
                 // Call the assertion callback
                 done();
@@ -193,7 +193,7 @@ describe('Article CRUD tests', function () {
 
   it('should be able to get a list of itunes if not signed in', function (done) {
     // Create new itune model instance
-    var ituneObj = new Article(itune);
+    var ituneObj = new Itune(itune);
 
     // Save the itune
     ituneObj.save(function () {
@@ -212,7 +212,7 @@ describe('Article CRUD tests', function () {
 
   it('should be able to get a single itune if not signed in', function (done) {
     // Create new itune model instance
-    var ituneObj = new Article(itune);
+    var ituneObj = new Itune(itune);
 
     // Save the itune
     ituneObj.save(function () {
@@ -232,7 +232,7 @@ describe('Article CRUD tests', function () {
     request(app).get('/api/itunes/test')
       .end(function (req, res) {
         // Set assertion
-        res.body.should.be.instanceof(Object).and.have.property('message', 'Article is invalid');
+        res.body.should.be.instanceof(Object).and.have.property('message', 'Itune is invalid');
 
         // Call the assertion callback
         done();
@@ -299,7 +299,7 @@ describe('Article CRUD tests', function () {
     itune.user = user;
 
     // Create new itune model instance
-    var ituneObj = new Article(itune);
+    var ituneObj = new Itune(itune);
 
     // Save the itune
     ituneObj.save(function () {
@@ -407,7 +407,7 @@ describe('Article CRUD tests', function () {
   it('should be able to get a single itune if signed in and verify the custom "isCurrentUserOwner" field is set to "true"', function (done) {
     // Create new itune model instance
     itune.user = user;
-    var ituneObj = new Article(itune);
+    var ituneObj = new Itune(itune);
 
     // Save the itune
     ituneObj.save(function () {
@@ -459,7 +459,7 @@ describe('Article CRUD tests', function () {
 
   it('should be able to get a single itune if not signed in and verify the custom "isCurrentUserOwner" field is set to "false"', function (done) {
     // Create new itune model instance
-    var ituneObj = new Article(itune);
+    var ituneObj = new Itune(itune);
 
     // Save the itune
     ituneObj.save(function () {
@@ -499,7 +499,7 @@ describe('Article CRUD tests', function () {
         return done(err);
       }
 
-      // Sign in with the user that will create the Article
+      // Sign in with the user that will create the Itune
       agent.post('/api/auth/signin')
         .send(credentials)
         .expect(200)
@@ -563,7 +563,7 @@ describe('Article CRUD tests', function () {
 
   afterEach(function (done) {
     User.remove().exec(function () {
-      Article.remove().exec(done);
+      Itune.remove().exec(done);
     });
   });
 });

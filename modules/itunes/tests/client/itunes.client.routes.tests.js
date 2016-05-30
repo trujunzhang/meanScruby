@@ -1,10 +1,10 @@
 (function () {
   'use strict';
 
-  describe('Articles Route Tests', function () {
+  describe('Itunes Route Tests', function () {
     // Initialize global variables
     var $scope,
-      ArticlesService;
+      ItunesService;
 
     // We can start by loading the main application module
     beforeEach(module(ApplicationConfiguration.applicationModuleName));
@@ -12,10 +12,10 @@
     // The injector ignores leading and trailing underscores here (i.e. _$httpBackend_).
     // This allows us to inject a service but then attach it to a variable
     // with the same name as the service.
-    beforeEach(inject(function ($rootScope, _ArticlesService_) {
+    beforeEach(inject(function ($rootScope, _ItunesService_) {
       // Set a new global scope
       $scope = $rootScope.$new();
-      ArticlesService = _ArticlesService_;
+      ItunesService = _ItunesService_;
     }));
 
     describe('Route Config', function () {
@@ -59,24 +59,24 @@
 
       describe('View Route', function () {
         var viewstate,
-          ArticlesController,
-          mockArticle;
+          ItunesController,
+          mockItune;
 
         beforeEach(inject(function ($controller, $state, $templateCache) {
           viewstate = $state.get('itunes.view');
           $templateCache.put('modules/itunes/client/views/view-itune.client.view.html', '');
 
           // create mock itune
-          mockArticle = new ArticlesService({
+          mockItune = new ItunesService({
             _id: '525a8422f6d0f87f0e407a33',
-            title: 'An Article about MEAN',
+            title: 'An Itune about MEAN',
             content: 'MEAN rocks!'
           });
 
           // Initialize Controller
-          ArticlesController = $controller('ArticlesController as vm', {
+          ItunesController = $controller('ItunesController as vm', {
             $scope: $scope,
-            ituneResolve: mockArticle
+            ituneResolve: mockItune
           });
         }));
 
@@ -96,7 +96,7 @@
         }));
 
         it('should attach an itune to the controller scope', function () {
-          expect($scope.vm.itune._id).toBe(mockArticle._id);
+          expect($scope.vm.itune._id).toBe(mockItune._id);
         });
 
         it('Should not be abstract', function () {
@@ -110,20 +110,20 @@
 
       describe('Create Route', function () {
         var createstate,
-          ArticlesController,
-          mockArticle;
+          ItunesController,
+          mockItune;
 
         beforeEach(inject(function ($controller, $state, $templateCache) {
           createstate = $state.get('itunes.create');
           $templateCache.put('modules/itunes/client/views/form-itune.client.view.html', '');
 
           // create mock itune
-          mockArticle = new ArticlesService();
+          mockItune = new ItunesService();
 
           // Initialize Controller
-          ArticlesController = $controller('ArticlesController as vm', {
+          ItunesController = $controller('ItunesController as vm', {
             $scope: $scope,
-            ituneResolve: mockArticle
+            ituneResolve: mockItune
           });
         }));
 
@@ -141,7 +141,7 @@
         }));
 
         it('should attach an itune to the controller scope', function () {
-          expect($scope.vm.itune._id).toBe(mockArticle._id);
+          expect($scope.vm.itune._id).toBe(mockItune._id);
           expect($scope.vm.itune._id).toBe(undefined);
         });
 
@@ -156,24 +156,24 @@
 
       describe('Edit Route', function () {
         var editstate,
-          ArticlesController,
-          mockArticle;
+          ItunesController,
+          mockItune;
 
         beforeEach(inject(function ($controller, $state, $templateCache) {
           editstate = $state.get('itunes.edit');
           $templateCache.put('modules/itunes/client/views/form-itune.client.view.html', '');
 
           // create mock itune
-          mockArticle = new ArticlesService({
+          mockItune = new ItunesService({
             _id: '525a8422f6d0f87f0e407a33',
-            title: 'An Article about MEAN',
+            title: 'An Itune about MEAN',
             content: 'MEAN rocks!'
           });
 
           // Initialize Controller
-          ArticlesController = $controller('ArticlesController as vm', {
+          ItunesController = $controller('ItunesController as vm', {
             $scope: $scope,
-            ituneResolve: mockArticle
+            ituneResolve: mockItune
           });
         }));
 
@@ -193,7 +193,7 @@
         }));
 
         it('should attach an itune to the controller scope', function () {
-          expect($scope.vm.itune._id).toBe(mockArticle._id);
+          expect($scope.vm.itune._id).toBe(mockItune._id);
         });
 
         it('Should not be abstract', function () {

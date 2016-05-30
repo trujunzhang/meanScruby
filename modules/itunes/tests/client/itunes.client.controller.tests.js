@@ -1,15 +1,15 @@
 (function () {
   'use strict';
 
-  describe('Articles Controller Tests', function () {
+  describe('Itunes Controller Tests', function () {
     // Initialize global variables
-    var ArticlesController,
+    var ItunesController,
       $scope,
       $httpBackend,
       $state,
       Authentication,
-      ArticlesService,
-      mockArticle;
+      ItunesService,
+      mockItune;
 
     // The $resource service augments the response object with methods for updating and deleting the resource.
     // If we were to use the standard toEqual matcher, our tests would fail because the test values would not match
@@ -36,7 +36,7 @@
     // The injector ignores leading and trailing underscores here (i.e. _$httpBackend_).
     // This allows us to inject a service but then attach it to a variable
     // with the same name as the service.
-    beforeEach(inject(function ($controller, $rootScope, _$state_, _$httpBackend_, _Authentication_, _ArticlesService_) {
+    beforeEach(inject(function ($controller, $rootScope, _$state_, _$httpBackend_, _Authentication_, _ItunesService_) {
       // Set a new global scope
       $scope = $rootScope.$new();
 
@@ -44,12 +44,12 @@
       $httpBackend = _$httpBackend_;
       $state = _$state_;
       Authentication = _Authentication_;
-      ArticlesService = _ArticlesService_;
+      ItunesService = _ItunesService_;
 
       // create mock itune
-      mockArticle = new ArticlesService({
+      mockItune = new ItunesService({
         _id: '525a8422f6d0f87f0e407a33',
-        title: 'An Article about MEAN',
+        title: 'An Itune about MEAN',
         content: 'MEAN rocks!'
       });
 
@@ -58,8 +58,8 @@
         roles: ['user']
       };
 
-      // Initialize the Articles controller.
-      ArticlesController = $controller('ArticlesController as vm', {
+      // Initialize the Itunes controller.
+      ItunesController = $controller('ItunesController as vm', {
         $scope: $scope,
         ituneResolve: {}
       });
@@ -69,21 +69,21 @@
     }));
 
     describe('vm.save() as create', function () {
-      var sampleArticlePostData;
+      var sampleItunePostData;
 
       beforeEach(function () {
         // Create a sample itune object
-        sampleArticlePostData = new ArticlesService({
-          title: 'An Article about MEAN',
+        sampleItunePostData = new ItunesService({
+          title: 'An Itune about MEAN',
           content: 'MEAN rocks!'
         });
 
-        $scope.vm.itune = sampleArticlePostData;
+        $scope.vm.itune = sampleItunePostData;
       });
 
-      it('should send a POST request with the form input values and then locate to new object URL', inject(function (ArticlesService) {
+      it('should send a POST request with the form input values and then locate to new object URL', inject(function (ItunesService) {
         // Set POST response
-        $httpBackend.expectPOST('api/itunes', sampleArticlePostData).respond(mockArticle);
+        $httpBackend.expectPOST('api/itunes', sampleItunePostData).respond(mockItune);
 
         // Run controller functionality
         $scope.vm.save(true);
@@ -91,13 +91,13 @@
 
         // Test URL redirection after the itune was created
         expect($state.go).toHaveBeenCalledWith('itunes.view', {
-          ituneId: mockArticle._id
+          ituneId: mockItune._id
         });
       }));
 
       it('should set $scope.vm.error if error', function () {
         var errorMessage = 'this is an error message';
-        $httpBackend.expectPOST('api/itunes', sampleArticlePostData).respond(400, {
+        $httpBackend.expectPOST('api/itunes', sampleItunePostData).respond(400, {
           message: errorMessage
         });
 
@@ -111,10 +111,10 @@
     describe('vm.save() as update', function () {
       beforeEach(function () {
         // Mock itune in $scope
-        $scope.vm.itune = mockArticle;
+        $scope.vm.itune = mockItune;
       });
 
-      it('should update a valid itune', inject(function (ArticlesService) {
+      it('should update a valid itune', inject(function (ItunesService) {
         // Set PUT response
         $httpBackend.expectPUT(/api\/itunes\/([0-9a-fA-F]{24})$/).respond();
 
@@ -124,11 +124,11 @@
 
         // Test URL location to new object
         expect($state.go).toHaveBeenCalledWith('itunes.view', {
-          ituneId: mockArticle._id
+          ituneId: mockItune._id
         });
       }));
 
-      it('should set $scope.vm.error if error', inject(function (ArticlesService) {
+      it('should set $scope.vm.error if error', inject(function (ItunesService) {
         var errorMessage = 'error';
         $httpBackend.expectPUT(/api\/itunes\/([0-9a-fA-F]{24})$/).respond(400, {
           message: errorMessage
@@ -144,7 +144,7 @@
     describe('vm.remove()', function () {
       beforeEach(function () {
         // Setup itunes
-        $scope.vm.itune = mockArticle;
+        $scope.vm.itune = mockItune;
       });
 
       it('should delete the itune and redirect to itunes', function () {

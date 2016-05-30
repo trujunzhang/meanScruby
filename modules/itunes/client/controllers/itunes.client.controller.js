@@ -3,11 +3,11 @@
 
   angular
     .module('itunes')
-    .controller('ArticlesController', ArticlesController);
+    .controller('ItunesController', ItunesController);
 
-  ArticlesController.$inject = ['$scope', '$state', 'ituneResolve', '$window', 'Authentication'];
+  ItunesController.$inject = ['$scope', '$state', 'ituneResolve', '$window', 'Authentication'];
 
-  function ArticlesController($scope, $state, itune, $window, Authentication) {
+  function ItunesController($scope, $state, itune, $window, Authentication) {
     var vm = this;
 
     vm.itune = itune;
@@ -17,14 +17,14 @@
     vm.remove = remove;
     vm.save = save;
 
-    // Remove existing Article
+    // Remove existing Itune
     function remove() {
       if ($window.confirm('Are you sure you want to delete?')) {
         vm.itune.$remove($state.go('itunes.list'));
       }
     }
 
-    // Save Article
+    // Save Itune
     function save(isValid) {
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'vm.form.ituneForm');

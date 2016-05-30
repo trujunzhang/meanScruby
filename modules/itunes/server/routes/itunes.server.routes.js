@@ -7,7 +7,7 @@ var itunesPolicy = require('../policies/itunes.server.policy'),
   itunes = require('../controllers/itunes.server.controller');
 
 module.exports = function (app) {
-  // Articles collection routes
+  // Itunes collection routes
   app.route('/api/itunes').all(itunesPolicy.isAllowed)
     .get(itunes.list)
     .post(itunes.create);

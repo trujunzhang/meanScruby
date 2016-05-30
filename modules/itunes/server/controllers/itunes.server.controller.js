@@ -5,14 +5,14 @@
  */
 var path = require('path'),
   mongoose = require('mongoose'),
-  Article = mongoose.model('Article'),
+  Itune = mongoose.model('Itune'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
 /**
  * Create an itune
  */
 exports.create = function (req, res) {
-  var itune = new Article(req.body);
+  var itune = new Itune(req.body);
   itune.user = req.user;
 
   itune.save(function (err) {
@@ -33,8 +33,8 @@ exports.read = function (req, res) {
   // convert mongoose document to JSON
   var itune = req.itune ? req.itune.toJSON() : {};
 
-  // Add a custom field to the Article, for determining if the current User is the "owner".
-  // NOTE: This field is NOT persisted to the database, since it doesn't exist in the Article model.
+  // Add a custom field to the Itune, for determining if the current User is the "owner".
+  // NOTE: This field is NOT persisted to the database, since it doesn't exist in the Itune model.
   itune.isCurrentUserOwner = !!(req.user && itune.user && itune.user._id.toString() === req.user._id.toString());
 
   res.json(itune);
@@ -78,10 +78,10 @@ exports.delete = function (req, res) {
 };
 
 /**
- * List of Articles
+ * List of Itunes
  */
 exports.list = function (req, res) {
-  Article.find().sort('-created').populate('user', 'displayName').exec(function (err, itunes) {
+  Itune.find().sort('-created').populate('user', 'displayName').exec(function (err, itunes) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -93,17 +93,17 @@ exports.list = function (req, res) {
 };
 
 /**
- * Article middleware
+ * Itune middleware
  */
 exports.ituneByID = function (req, res, next, id) {
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send({
-      message: 'Article is invalid'
+      message: 'Itune is invalid'
     });
   }
 
-  Article.findById(id).populate('user', 'displayName').exec(function (err, itune) {
+  Itune.findById(id).populate('user', 'displayName').exec(function (err, itune) {
     if (err) {
       return next(err);
     } else if (!itune) {

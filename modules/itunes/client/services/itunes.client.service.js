@@ -3,11 +3,11 @@
 
   angular
     .module('itunes.services')
-    .factory('ArticlesService', ArticlesService);
+    .factory('ItunesService', ItunesService);
 
-  ArticlesService.$inject = ['$resource'];
+  ItunesService.$inject = ['$resource'];
 
-  function ArticlesService($resource) {
+  function ItunesService($resource) {
     return $resource('api/itunes/:ituneId', {
       ituneId: '@_id'
     }, {

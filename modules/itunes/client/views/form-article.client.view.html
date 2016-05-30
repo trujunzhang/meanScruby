@@ -1,6 +1,6 @@
 <section>
   <div class="page-header">
-    <h1>{{vm.itune._id ? 'Edit Article' : 'New Article'}}</h1>
+    <h1>{{vm.itune._id ? 'Edit Itune' : 'New Itune'}}</h1>
   </div>
   <div class="col-md-12">
     <form name="vm.form.ituneForm" class="form-horizontal" ng-submit="vm.save(vm.form.ituneForm.$valid)" novalidate>
@@ -9,7 +9,7 @@
           <label class="control-label" for="title">Title</label>
           <input name="title" type="text" ng-model="vm.itune.title" id="title" class="form-control" placeholder="Title" required>
           <div ng-messages="vm.form.ituneForm.title.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Article title is required.</p>
+            <p class="help-block error-text" ng-message="required">Itune title is required.</p>
           </div>
         </div>
         <div class="form-group">

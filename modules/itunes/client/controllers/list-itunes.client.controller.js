@@ -3,13 +3,13 @@
 
   angular
     .module('itunes')
-    .controller('ArticlesListController', ArticlesListController);
+    .controller('ItunesListController', ItunesListController);
 
-  ArticlesListController.$inject = ['ArticlesService'];
+  ItunesListController.$inject = ['ItunesService'];
 
-  function ArticlesListController(ArticlesService) {
+  function ItunesListController(ItunesService) {
     var vm = this;
 
-    vm.itunes = ArticlesService.query();
+    vm.itunes = ItunesService.query();
   }
 }());

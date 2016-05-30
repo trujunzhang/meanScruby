@@ -17,63 +17,63 @@
       .state('itunes.list', {
         url: '',
         templateUrl: 'modules/itunes/client/views/list-itunes.client.view.html',
-        controller: 'ArticlesListController',
+        controller: 'ItunesListController',
         controllerAs: 'vm',
         data: {
-          pageTitle: 'Articles List'
+          pageTitle: 'Itunes List'
         }
       })
       .state('itunes.create', {
         url: '/create',
         templateUrl: 'modules/itunes/client/views/form-itune.client.view.html',
-        controller: 'ArticlesController',
+        controller: 'ItunesController',
         controllerAs: 'vm',
         resolve: {
-          ituneResolve: newArticle
+          ituneResolve: newItune
         },
         data: {
           roles: ['user', 'admin'],
-          pageTitle: 'Articles Create'
+          pageTitle: 'Itunes Create'
         }
       })
       .state('itunes.edit', {
         url: '/:ituneId/edit',
         templateUrl: 'modules/itunes/client/views/form-itune.client.view.html',
-        controller: 'ArticlesController',
+        controller: 'ItunesController',
         controllerAs: 'vm',
         resolve: {
-          ituneResolve: getArticle
+          ituneResolve: getItune
         },
         data: {
           roles: ['user', 'admin'],
-          pageTitle: 'Edit Article {{ ituneResolve.title }}'
+          pageTitle: 'Edit Itune {{ ituneResolve.title }}'
         }
       })
       .state('itunes.view', {
         url: '/:ituneId',
         templateUrl: 'modules/itunes/client/views/view-itune.client.view.html',
-        controller: 'ArticlesController',
+        controller: 'ItunesController',
         controllerAs: 'vm',
         resolve: {
-          ituneResolve: getArticle
+          ituneResolve: getItune
         },
         data: {
-          pageTitle: 'Article {{ ituneResolve.title }}'
+          pageTitle: 'Itune {{ ituneResolve.title }}'
         }
       });
   }
 
-  getArticle.$inject = ['$stateParams', 'ArticlesService'];
+  getItune.$inject = ['$stateParams', 'ItunesService'];
 
-  function getArticle($stateParams, ArticlesService) {
-    return ArticlesService.get({
+  function getItune($stateParams, ItunesService) {
+    return ItunesService.get({
       ituneId: $stateParams.ituneId
     }).$promise;
   }
 
-  newArticle.$inject = ['ArticlesService'];
+  newItune.$inject = ['ItunesService'];
 
-  function newArticle(ArticlesService) {
-    return new ArticlesService();
+  function newItune(ItunesService) {
+    return new ItunesService();
   }
 }());
