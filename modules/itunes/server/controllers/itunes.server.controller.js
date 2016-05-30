@@ -6,6 +6,7 @@
 var path = require('path'),
     mongoose = require('mongoose'),
     Itune = mongoose.model('Itune'),
+    _ = require('lodash'),
     errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
 /**
@@ -81,7 +82,10 @@ exports.delete = function (req, res) {
  * List of Itunes
  */
 exports.list = function (req, res) {
-    Itune.find().sort('-updatedAt').exec(function (err, itunes) {
+    var _page = req.params.page;
+    var page = 1;
+    var per_page = 10;
+    Itune.find().sort('-updatedAt').skip((page - 1) * per_page).limit(per_page).exec(function (err, itunes) {
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
@@ -114,4 +118,8 @@ exports.ituneByID = function (req, res, next, id) {
         req.itune = itune;
         next();
     });
+};
+
+exports.ituneByPage = function (req,res,next,page) {
+    req.page = page
 };

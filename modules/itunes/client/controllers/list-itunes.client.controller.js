@@ -1,15 +1,18 @@
 (function () {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('itunes')
-    .controller('ItunesListController', ItunesListController);
+    angular
+        .module('itunes')
+        .controller('ItunesListController', ItunesListController);
 
-  ItunesListController.$inject = ['ItunesService'];
+    ItunesListController.$inject = ['ItunesService', '$stateParams'];
 
-  function ItunesListController(ItunesService) {
-    var vm = this;
+    function ItunesListController(ItunesService, $stateParams) {
+        var vm = this;
 
-    vm.itunes = ItunesService.query();
-  }
+        vm.page = $stateParams.page;
+        vm.name = $stateParams.name;
+        vm.itunes = ItunesService.query();
+
+    }
 }());

@@ -11,7 +11,7 @@ module.exports = function (app) {
   app.route('/api/itunes').all(itunesPolicy.isAllowed)
     .get(itunes.list)
     .post(itunes.create);
-
+  
   // Single itune routes
   app.route('/api/itunes/:ituneId').all(itunesPolicy.isAllowed)
     .get(itunes.read)
@@ -20,4 +20,5 @@ module.exports = function (app) {
 
   // Finish by binding the itune middleware
   app.param('ituneId', itunes.ituneByID);
+  app.param('page', itunes.ituneByPage);
 };
