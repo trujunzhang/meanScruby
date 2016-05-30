@@ -10,7 +10,7 @@ var mongoose = require('mongoose'),
  * Itune Schema
  */
 var ItuneSchema = new Schema({
-  created: {
+  updatedAt: {
     type: Date,
     default: Date.now
   },

@@ -19,3 +19,9 @@
     No itunes yet, why don't you <a ui-sref="itunes.create">create one</a>?
   </div>
 </section>
+
+<pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></pagination>
+<div class="alert alert-warning text-center" data-ng-if="articles.$resolved && !articles.length">
+  No itunes yet, why don't you <a ui-sref="itunes.create">create one</a>?
+</div>
+</section>
