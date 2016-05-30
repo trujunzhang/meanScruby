@@ -1693,8 +1693,210 @@
 #faq a {
   font-family: 'Roboto', 'Helvetica Neue', sans-serif;
 }
+#faq span {
+  font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+  font-weight: 900;
+  padding-left: 4px;
+}
 #faq p {
   line-height: 1.33em;
   color: #7E7E7E;
   font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+}
+#desktop-footer {
+  /* footer */
+}
+#desktop-footer .footer {
+  background: #333333;
+  padding: 80px 0 40px;
+}
+#desktop-footer .footer a,
+#desktop-footer .footer h2,
+#desktop-footer .footer .h2,
+#desktop-footer .footer h3,
+#desktop-footer .footer .h3,
+#desktop-footer .footer h4,
+#desktop-footer .footer .h4 {
+  color: #fff;
+}
+#desktop-footer .short-post .short-post-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+  font-weight: 400;
+  margin: 20px 0 5px;
+  text-align: center;
+}
+#desktop-footer .short-post .post-meta {
+  font-size: 12px;
+  text-align: center;
+}
+#desktop-footer .short-post .post-meta:after {
+  clear: both;
+}
+#desktop-footer .short-post .post-meta:after,
+#desktop-footer .short-post .post-meta:before {
+  display: table;
+  content: '';
+}
+#desktop-footer .short-post .post-meta span {
+  display: inline-block;
+  margin: 0 10px;
+}
+#desktop-footer .thumb {
+  position: relative;
+  display: block;
+  background: #111;
+}
+#desktop-footer .thumb:after {
+  font-family: 'Pe-icon-7-stroke';
+  content: '\e618';
+  width: 40px;
+  height: 40px;
+  display: block;
+  font-size: 40px;
+  text-align: center;
+  line-height: 40px;
+  color: #fff;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  margin-left: -20px;
+  margin-top: -20px;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+#desktop-footer .thumb img,
+#desktop-footer .thumb:after {
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+#desktop-footer .thumb:hover:after {
+  top: 50%;
+  opacity: 0.7;
+  filter: alpha(opacity=70);
+}
+#desktop-footer .thumb:hover img {
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+}
+#desktop-footer .footer hr {
+  border-color: #2b2b2b;
+}
+#desktop-footer .footer .ft-hr {
+  margin: 40px 0;
+}
+#desktop-footer .footer .ft-logo {
+  display: block;
+  float: left;
+  padding: 0 30px 0 0;
+  margin-right: 30px;
+  border-right: 1px solid #2b2b2b;
+}
+#desktop-footer .footer .ft-social .social {
+  text-align: right;
+}
+#desktop-footer .footer .ft-social .social ul li a .fa {
+  font-size: 26px;
+  height: 45px;
+  width: 45px;
+  line-height: 45px;
+  text-align: center;
+}
+#desktop-footer .footer .copyright:after {
+  clear: both;
+}
+#desktop-footer .footer .copyright:after,
+#desktop-footer .footer .copyright:before {
+  display: table;
+  content: '';
+}
+#desktop-footer .social ul li a,
+#desktop-footer .team .social ul li a:hover,
+#desktop-footer .team .social ul li a:focus {
+  color: #fff;
+  text-decoration: none;
+}
+#desktop-footer .social ul li a .fa {
+  font-size: 18px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  display: block;
+  background: #de2525;
+  color: #fff;
+}
+#desktop-footer .social ul li a .fa-twitter {
+  background: #29c5f6;
+}
+#desktop-footer .social ul li a .fa-linkedin {
+  background: #036fba;
+}
+#desktop-footer .social ul li a .fa-facebook {
+  background: #3b5999;
+}
+#desktop-footer .social ul li a .fa-google-plus {
+  background: #db4836;
+}
+#desktop-footer .social ul li a .fa-pinterest {
+  background: #d01d15;
+}
+#desktop-footer .footer hr {
+  border-color: #2b2b2b;
+}
+#desktop-footer .footer .ft-hr {
+  margin: 40px 0;
+}
+#desktop-footer .footer .ft-logo {
+  display: block;
+  float: left;
+  padding: 0 30px 0 0;
+  margin-right: 30px;
+  border-right: 1px solid #7a7a7a;
+}
+#desktop-footer .footer .ft-social .social {
+  text-align: right;
+}
+#desktop-footer .footer .ft-social .social ul li a .fa {
+  font-size: 26px;
+  height: 45px;
+  width: 45px;
+  line-height: 45px;
+  text-align: center;
+}
+#desktop-footer .footer .copyright:after {
+  clear: both;
+}
+#desktop-footer .footer .copyright:after,
+#desktop-footer .footer .copyright:before {
+  display: table;
+  content: '';
+}
+#desktop-footer .social {
+  text-align: center;
+}
+#desktop-footer .social ul {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+#desktop-footer .social ul:after {
+  clear: both;
+}
+#desktop-footer .social ul:after,
+#desktop-footer .social ul:before {
+  display: table;
+  content: '';
+}
+#desktop-footer .social ul li {
+  display: block;
+  float: left;
+  list-style: none;
+}
+#desktop-footer .team .social {
+  margin-top: 20px;
 }
