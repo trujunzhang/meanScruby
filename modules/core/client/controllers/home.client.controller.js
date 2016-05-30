@@ -5,15 +5,17 @@
         .module('core', ['duScroll'])
         .controller('HomeController', HomeController)
         .directive('ngRepeatOwlCarousel', repeatOwlCarousel)
+        .directive('scroll', topNavigationSmoothScroll)
         .filter("sanitize", ['$sce', function ($sce) {
             return function (htmlCode) {
                 return $sce.trustAsHtml(htmlCode);
             }
         }]);
 
-    HomeController.$inject = ['$scope', '$document'];
 
-    function HomeController($scope, $document) {
+    HomeController.$inject = ['$scope', '$document', '$window'];
+
+    function HomeController($scope, $document, $window) {
         var vm = this;
 
         //faq accordian settings
@@ -78,6 +80,20 @@
                     return scope.carouselInit()();
                 }
             }
+        };
+    }
+
+    function topNavigationSmoothScroll($window) {
+        return function (scope, element, attrs) {
+            angular.element($window).bind("scroll", function () {
+                if ($(window).scrollTop() > $(".sub-navigation").height()) {
+                    // position: fixed; top: 0px; z-index: 1000;
+                    $(".sub-navigation").css({"position": "fixed", "top": "0px", "z-index": "1000"});
+                } else {
+                    $(".sub-navigation").removeAttr("style");
+                }
+                scope.$apply();
+            });
         };
     }
 
