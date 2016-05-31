@@ -23,7 +23,9 @@
         };
 
         vm.pageChanged = function () {
-            vm.getMembers();
+            // page.number;
+            var page = vm.currentPage;
+            vm.getItunes();
         };
 
         vm.getItunes = function () {

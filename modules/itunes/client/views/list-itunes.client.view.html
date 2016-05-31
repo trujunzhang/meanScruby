@@ -24,7 +24,7 @@
   </div>
 
   <div class="row">
-    <uib-pagination total-items="vm.totalItems" ng-model="vm.currentPage" ng-change="vm.pageChanged()"
+    <uib-pagination total-items="vm.totalItems" ng-model="vm.currentPage" ng-change="vm.pageChanged(page.number)"
                     max-size="vm.totalItems"
                     ng-show="true"></uib-pagination>
   </div>
