@@ -8,10 +8,6 @@ var itunesPolicy = require('../policies/itunes.server.policy'),
 
 module.exports = function (app) {
   // Itunes collection routes
-  app.route('/api/itunes').all(itunesPolicy.isAllowed)
-    .get(itunes.list)
-    .post(itunes.create);
-
   app.route('/api/itunesList/:page')
       .get(itunes.itunesList);
 
