@@ -7,8 +7,27 @@
       try &nbsp;&nbsp;<i class="fa fa-angle-double-right">
       </i>
     </a>
+    <div class="row">
+      <pre>totalItems = <span ng-bind="vm.totalItems"></span></pre>
+    </div>
+  </div>
+  <div class="row">
+    <form name="userForm">
+      <label>Name:
+        <input type="text" name="userName"
+               ng-model="vm.totalItems"
+        />
+      </label>
+    </form>
   </div>
 
+  </div>
+
+  <div class="row">
+    <uib-pagination total-items="vm.totalItems" ng-model="vm.currentPage" ng-change="vm.pageChanged()"
+                    max-size="vm.totalItems"
+                    ng-show="true"></uib-pagination>
+  </div>
 
   <div class="list-group">
     <a ng-repeat="itune in vm.itunes" ui-sref="itunes.view({ ituneId: itune._id })" class="list-group-item">
@@ -23,16 +42,8 @@
       <p class="list-group-item-text" ng-bind="itune.content"></p>
     </a>
   </div>
-  <div class="alert alert-warning text-center" ng-if="vm.itunes.$resolved && !vm.itunes.length">
-    No itunes yet, why don't you <a ui-sref="itunes.create">create one</a>?
-  </div>
-</section>
 
 
-<pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></pagination>
-<div class="alert alert-warning text-center" data-ng-if="itunes.$resolved && !itunes.length">
-  No itunes yet, why don't you <a ui-sref="itunes.create">create one</a>?
-</div>
 </section>
 
 
