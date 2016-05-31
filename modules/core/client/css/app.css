@@ -1901,7 +1901,12 @@
   margin-top: 20px;
 }
 #showcases {
+  background-color: #e4e4e4;
+}
+#showcases #crawling-panel {
   background-color: white;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 #showcases #app_panel {
   padding-top: 40px;
