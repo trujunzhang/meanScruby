@@ -1,67 +1,12 @@
 <div class='container' id="showcases" data-ctrl="itunes" data-ng-init="vm.getItunes()">
 
-  <div class="row cases-export-panel">
-    <div class="col-md-8">
-      <h1>Crawling <b>Apple itune apps</b></h1>
-
-      <div class="pagination">
-        <uib-pagination total-items="vm.totalItems" ng-model="vm.currentPage" ng-change="vm.pageChanged(page.number)"
-                        max-size="vm.totalItems" ng-show="true">
-        </uib-pagination>
-      </div>
-    </div>
-    <div class="col-md-4">
-
-      <div class="crawl-info-form cif-box">
-        <div class="cif-inner">
-          <h2 id="crawledItemCount">{{vm.totalItems}}</h2>
-          <p>Crawled Items</p>
-        </div>
-        <button id="export_Button" type="button" class="btn btn-success cif-button" data-loading-text="Exporting...">
-          Export to Excel
-        </button>
-      </div>
-    </div>
-
+  <div class="row">
+    <div class="row cases-export-panel" ng-include="'/modules/itunes/client/views/banner.client.view.html'"></div>
   </div>
 
   <div class="row">
-
-    <div class="table-responsive">
-      <table class="table table-bordered table-hover table-striped">
-        <thead>
-        <tr>
-          <th>App</th>
-          <th>Version</th>
-          <th>Published</th>
-          <th>Developer</th>
-          <th>reviews</th>
-          <th>reviewsCurrent</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="itune in vm.itunes">
-          <td>
-            <a href="{{itune.url}}">
-              <img alt="Icon175x175" class="img-responsive" src="{{itune.thumbnail}}">
-            </a>
-          </td>
-          <td>{{itune.version}}</td>
-          <td>{{itune.appLastUpdated}}</td>
-          <td>
-            <a href="{{itune.website}}">
-              <span>{{itune.developer}}</span>
-            </a>
-          </td>
-          <td>{{itune.ofReviews}}</td>
-          <td>{{itune.ofReviewsCurrent}}</td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-
+    <div class="table-responsive" ng-include="'/modules/itunes/client/views/table.client.view.html'"></div>
   </div>
-
 
 </div>
 
