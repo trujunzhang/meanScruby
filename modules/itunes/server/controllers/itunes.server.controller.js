@@ -96,6 +96,27 @@ exports.list = function (req, res) {
     });
 };
 
+exports.itunesList = function (req, res) {
+
+    if (!req.params.page) {
+        var page = 1;
+    } else {
+        var page = req.params.page;
+    }
+    var per_page = 10;
+
+    Itune.find().sort('-updatedAt').skip((page - 1) * per_page).limit(per_page).exec(function (err, itunes) {
+        if (err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.json(itunes);
+        }
+    });
+
+};
+
 /**
  * Itune middleware
  */
@@ -120,6 +141,6 @@ exports.ituneByID = function (req, res, next, id) {
     });
 };
 
-exports.ituneByPage = function (req,res,next,page) {
+exports.ituneByPage = function (req, res, next, page) {
     req.page = page
 };

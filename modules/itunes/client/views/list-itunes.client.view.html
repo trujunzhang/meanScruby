@@ -1,4 +1,4 @@
-<section>
+<section data-ng-init="vm.getItunes()">
   <div class="page-header">
     <h1>Itunes</h1>
   </div>
@@ -8,6 +8,8 @@
       </i>
     </a>
   </div>
+
+
   <div class="list-group">
     <a ng-repeat="itune in vm.itunes" ui-sref="itunes.view({ ituneId: itune._id })" class="list-group-item">
       <small class="list-group-item-text">
@@ -26,9 +28,17 @@
   </div>
 </section>
 
-<uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()">
-  <div class="alert alert-warning text-center" data-ng-if="articles.$resolved && !articles.length">
-    No itunes yet, why don't you <a ui-sref="itunes.create">create one</a>?
-  </div>
-</uib-pagination>
+
+<pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></pagination>
+<div class="alert alert-warning text-center" data-ng-if="itunes.$resolved && !itunes.length">
+  No itunes yet, why don't you <a ui-sref="itunes.create">create one</a>?
+</div>
+</section>
+
+
+<!--<uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()">-->
+<!--<div class="alert alert-warning text-center" data-ng-if="itunes.$resolved && !itunes.length">-->
+<!--No itunes yet, why don't you <a ui-sref="itunes.create">create one</a>?-->
+<!--</div>-->
+<!--</uib-pagination>-->
 
