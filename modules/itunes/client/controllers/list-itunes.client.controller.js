@@ -5,9 +5,9 @@
         .module('itunes')
         .controller('ItunesListController', ItunesListController);
 
-    ItunesListController.$inject = ['ItunesService', '$stateParams'];
+    ItunesListController.$inject = ['ItunesService', '$stateParams', '$http'];
 
-    function ItunesListController(ItunesService, $stateParams) {
+    function ItunesListController(ItunesService, $stateParams, $http) {
         var vm = this;
 
         // vm.page = $stateParams.page;
@@ -23,7 +23,7 @@
 
         vm.pageChanged = function () {
             vm.getMembers();
-        };        
+        };
 
         vm.getItunes = function () {
 

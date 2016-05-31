@@ -12,7 +12,7 @@ module.exports = function (app) {
     .get(itunes.list)
     .post(itunes.create);
 
-  app.route('/api/itunesList/:page')
+  app.route('/api/itunesList/:page').all(itunesPolicy.isAllowed)
       .get(itunes.itunesList);
   
   // Single itune routes
