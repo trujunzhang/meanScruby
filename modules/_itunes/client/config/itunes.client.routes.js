@@ -16,7 +16,7 @@
             })
             .state('itunes.List', {
                 url: '',
-                templateUrl: 'modules/itunes/client/views/list-itunes.client.view.html',
+                templateUrl: 'modules/_itunes/client/views/list-itunes.client.view.html',
                 controller: 'ItunesListController',
                 controllerAs: 'vm',
                 data: {
