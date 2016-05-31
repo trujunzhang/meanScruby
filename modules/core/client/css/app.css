@@ -1900,3 +1900,50 @@
 #desktop-footer .team .social {
   margin-top: 20px;
 }
+#showcases {
+  background-color: white;
+}
+#showcases .table-description a {
+  width: 100px;
+  height: 400px;
+}
+#showcases .cases-export-panel {
+  padding-top: 20px;
+  padding-bottom: 50px;
+}
+#showcases .cif-box {
+  background: white;
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
+  padding: 30px 15px 0px;
+  max-width: 536px;
+  border: solid 1px #f15a24;
+  border-radius: 4px;
+}
+#showcases .cif-box .cif-inner {
+  max-width: 380px;
+  margin: 0 auto;
+}
+#showcases .cif-box .cif-inner h2 {
+  margin-top: 0;
+  font-weight: 300;
+  color: #4d4d4d;
+  font-size: 74px;
+}
+#showcases .cif-box .cif-inner p {
+  margin-bottom: 32px;
+}
+#showcases .cif-box .cif-button {
+  background-color: #f15a24;
+  left: 50%;
+  position: absolute;
+  top: 100%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+#showcases #small-thumbnail {
+  width: 200px;
+  height: auto;
+}

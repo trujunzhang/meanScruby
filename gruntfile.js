@@ -93,7 +93,7 @@ module.exports = function (grunt) {
     },
     eslint: {
       options: {},
-      target: _.union(defaultAssets.server.gruntConfig, defaultAssets.server.allJS, testAssets.tests.server, testAssets.tests.client, testAssets.tests.e2e)
+      target: _.union(defaultAssets.server.gruntConfig, testAssets.tests.server, testAssets.tests.client, testAssets.tests.e2e)
     },
     csslint: {
       options: {
