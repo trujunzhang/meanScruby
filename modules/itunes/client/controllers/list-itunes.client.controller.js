@@ -12,7 +12,6 @@
 
         vm.totalItems = 150;
         vm.currentPage = 1;
-        vm.pageSize = 10;
 
         vm.setPage = function (pageNo) {
             vm.currentPage = pageNo;

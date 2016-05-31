@@ -46,7 +46,7 @@ exports.itunesList = function (req, res) {
     } else {
         var page = req.params.page;
     }
-    var per_page = 10;
+    var per_page = 50;
 
     Itune.find().sort('-updatedAt').skip((page - 1) * per_page).limit(per_page).exec(function (err, itunes) {
         if (err) {

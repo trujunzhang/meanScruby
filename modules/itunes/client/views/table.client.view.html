@@ -13,7 +13,7 @@
   <tr ng-repeat="itune in vm.itunes">
     <td>
       <a href="{{itune.url}}">
-        <img alt="Icon175x175" class="img-responsive" src="{{itune.thumbnail}}" id="thumbnail">
+        <img alt="Icon175x175" class="img-responsive" ng-src="{{itune.thumbnail}}" id="thumbnail">
       </a>
     </td>
     <td>{{itune.version}}</td>
