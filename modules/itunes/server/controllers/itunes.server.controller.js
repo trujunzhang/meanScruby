@@ -141,7 +141,3 @@ exports.ituneByID = function (req, res, next, id) {
     });
 };
 
-exports.ituneByPage = function (req, res, next, page) {
-    req.page = page;
-    next();
-};
