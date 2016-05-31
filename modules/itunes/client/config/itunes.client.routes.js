@@ -14,17 +14,8 @@
                 url: '/itunes',
                 template: '<ui-view/>'
             })
-            .state('itunes.pagination', {
-                url: '/itunes/:page/:name',
-                templateUrl: 'modules/itunes/client/views/list-itunes.client.view.html',
-                controller: 'ItunesListController',
-                controllerAs: 'vm',
-                data: {
-                    pageTitle: 'Itunes List'
-                }
-            })
             .state('itunes.List', {
-                url: '/:page',
+                url: '',
                 templateUrl: 'modules/itunes/client/views/list-itunes.client.view.html',
                 controller: 'ItunesListController',
                 controllerAs: 'vm',
