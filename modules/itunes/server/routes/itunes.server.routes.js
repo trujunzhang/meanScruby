@@ -12,7 +12,7 @@ module.exports = function (app) {
     .get(itunes.list)
     .post(itunes.create);
 
-  app.route('/articleList/:page')
+  app.route('/api/itunesList/:page')
       .get(itunes.itunesList);
   
   // Single itune routes
