@@ -28,7 +28,7 @@
         vm.getItunes = function () {
 
             $http.get('api/itunesList/' + vm.currentPage).success(function (response) {
-                vm.articles = response;
+                vm.itunes = response;
 
             }).error(function (response) {
                 vm.error = response.message;
