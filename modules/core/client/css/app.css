@@ -1946,7 +1946,7 @@
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-#showcases #small-thumbnail {
-  width: 200px;
-  height: auto;
+#showcases #thumbnail {
+  width: 175px;
+  height: 175px;
 }

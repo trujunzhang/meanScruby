@@ -1,26 +1,27 @@
 <div ng-include="'/modules/core/client/views/header.client.view.html'"></div>
 
-<div class='container' id="showcases" data-ctrl="itunes" data-ng-init="vm.getItunes()">
+<div class="row" id="showcases">
+  <div class='container' data-ctrl="itunes" data-ng-init="vm.getItunes()">
 
-  <div class="row">
-    <div class="row cases-export-panel" ng-include="'/modules/itunes/client/views/banner.client.view.html'"></div>
-  </div>
-
-  <div class="row">
-    <div class="table-responsive" ng-include="'/modules/itunes/client/views/table.client.view.html'"></div>
-  </div>
-
-  <div class="row text-center">
-    <div class="pagination">
-      <uib-pagination
-        total-items="vm.totalItems" ng-model="vm.currentPage" ng-change="vm.pageChanged(page.number)"
-        max-size="10">
-      </uib-pagination>
+    <div class="row">
+      <div class="row cases-export-panel" ng-include="'/modules/itunes/client/views/banner.client.view.html'"></div>
     </div>
+
+    <div class="row">
+      <div class="table-responsive" ng-include="'/modules/itunes/client/views/table.client.view.html'"></div>
+    </div>
+
+    <div class="row text-center">
+      <div class="pagination">
+        <uib-pagination
+          total-items="vm.totalItems" ng-model="vm.currentPage" ng-change="vm.pageChanged(page.number)"
+          max-size="10">
+        </uib-pagination>
+      </div>
+    </div>
+
   </div>
+
+  <div class="row" id="desktop-footer" ng-include="'/modules/core/client/views/footer.client.view.html'"></div>
 
 </div>
-
-<div class="row" id="desktop-footer" ng-include="'/modules/core/client/views/footer.client.view.html'"></div>
-
-
