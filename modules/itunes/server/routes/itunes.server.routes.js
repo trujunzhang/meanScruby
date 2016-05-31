@@ -14,13 +14,7 @@ module.exports = function (app) {
 
   app.route('/api/itunesList/:page')
       .get(itunes.itunesList);
-  
-  // Single itune routes
-  app.route('/api/itunes/:ituneId').all(itunesPolicy.isAllowed)
-    .get(itunes.read)
-    .put(itunes.update)
-    .delete(itunes.delete);
 
-  // Finish by binding the itune middleware
-  app.param('ituneId', itunes.ituneByID);
+  app.route('/api/totalItems')
+      .get(itunes.totalItems);  
 };

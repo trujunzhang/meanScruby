@@ -38,5 +38,17 @@
             });
         };
 
+        vm.getTotalItems();
+
+        vm.getTotalItems = function () {
+
+            $http.get('api/totalItems/').success(function (response) {
+                vm.totalItems = response;
+
+            }).error(function (response) {
+                vm.error = response.message;
+            });
+        };
+
     }
 }());
