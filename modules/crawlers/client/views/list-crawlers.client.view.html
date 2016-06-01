@@ -1,0 +1,21 @@
+<section>
+  <div class="page-header">
+    <h1>Crawlers</h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="crawler in vm.crawlers" ui-sref="crawlers.view({ crawlerId: crawler._id })" class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="crawler.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="crawler.user" ng-bind="crawler.user.displayName"></span>
+        <span ng-if="!crawler.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="crawler.title"></h4>
+      <p class="list-group-item-text" ng-bind="crawler.content"></p>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" ng-if="vm.crawlers.$resolved && !vm.crawlers.length">
+    No crawlers yet, why don't you <a ui-sref="crawlers.create">create one</a>?
+  </div>
+</section>
