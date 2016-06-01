@@ -1,15 +1,42 @@
 (function () {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('categories')
-    .controller('CategoriesListController', CategoriesListController);
+    angular
+        .module('categories')
+        .controller('CategoriesListController', CategoriesListController);
 
-  CategoriesListController.$inject = ['CategoriesService'];
+    CategoriesListController.$inject = ['CategoriesService', '$stateParams', '$http'];
 
-  function CategoriesListController(CategoriesService) {
-    var vm = this;
+    function CategoriesListController(CategoriesService, $stateParams, $http) {
+        var vm = this;
 
-    vm.categories = CategoriesService.query();
-  }
+        vm.totalItems = 0;
+        vm.currentPage = 1;
+
+        vm.setPage = function (pageNo) {
+            vm.currentPage = pageNo;
+        };
+
+        vm.pageChanged = function () {
+            vm.getCategories();
+        };
+
+        vm.getCategories = function () {
+            $http.get('api/categoriesList/' + vm.currentPage).success(function (response) {
+                vm.categories = response;
+            }).error(function (response) {
+                vm.error = response.message;
+            });
+        };
+
+        getTotalItems();
+
+        function getTotalItems() {
+            $http.get('api/totalItems/').success(function (response) {
+                vm.totalItems = response;
+            }).error(function (response) {
+                vm.error = response.message;
+            });
+        }
+    }
 }());

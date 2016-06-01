@@ -10,7 +10,7 @@
     function ItunesListController(ItunesService, $stateParams, $http) {
         var vm = this;
 
-        vm.totalItems = 150;
+        vm.totalItems = 0;
         vm.currentPage = 1;
 
         vm.setPage = function (pageNo) {

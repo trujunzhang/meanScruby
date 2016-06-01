@@ -12,6 +12,12 @@ module.exports = function (app) {
     .get(categories.list)
     .post(categories.create);
 
+  app.route('/api/categoriesList/:page')
+      .get(categories.categoriesList);
+
+  app.route('/api/totalItems')
+      .get(categories.totalItems);
+
   // Single crawler routes
   app.route('/api/categories/:crawlerId').all(categoriesPolicy.isAllowed)
     .get(categories.read)
