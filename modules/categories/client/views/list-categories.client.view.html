@@ -1,19 +1,27 @@
-<section>
-  <div class="page-header">
-    <h1>Categories</h1>
+<div ng-include="'/modules/core/client/views/header.client.view.html'"></div>
+
+<div class="row" id="showcases">
+  <div class='container' id="crawling-panel" data-ctrl="itunes" data-ng-init="vm.getItunes()">
+
+    <div class="row">
+      <div class="row cases-export-panel" ng-include="'/modules/categories/client/views/list-search.client.view'"></div>
+    </div>
+
+    <div class="row">
+      <div class="table-responsive" ng-include="'/modules/categories/client/views/list-table.client.view.html'"></div>
+    </div>
+
+    <div class="row text-center">
+      <div class="pagination">
+        <uib-pagination
+          total-items="vm.totalItems" ng-model="vm.currentPage" ng-change="vm.pageChanged()"
+          max-size="10">
+        </uib-pagination>
+      </div>
+    </div>
+
   </div>
-  <div class="list-group">
-    <a ng-repeat="crawler in vm.categories" ui-sref="categories.view({ crawlerId: crawler._id })" class="list-group-item">
-      <small class="list-group-item-text">
-        Posted on
-        <span ng-bind="crawler.created | date:'mediumDate'"></span>
-        by
-      </small>
-      <h4 class="list-group-item-heading" ng-bind="crawler.title"></h4>
-      <p class="list-group-item-text" ng-bind="crawler.description"></p>
-    </a>
-  </div>
-  <div class="alert alert-warning text-center" ng-if="vm.categories.$resolved && !vm.categories.length">
-    No categories yet, why don't you <a ui-sref="categories.create">create one</a>?
-  </div>
-</section>
+
+  <div class="row" id="desktop-footer" ng-include="'/modules/core/client/views/footer.client.view.html'"></div>
+
+</div>
