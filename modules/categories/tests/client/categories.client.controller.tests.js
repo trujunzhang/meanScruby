@@ -46,7 +46,7 @@
       Authentication = _Authentication_;
       CategoriesService = _CategoriesService_;
 
-      // create mock crawler
+      // create mock category
       mockCategory = new CategoriesService({
         _id: '525a8422f6d0f87f0e407a33',
         title: 'An Category about MEAN',
@@ -61,7 +61,7 @@
       // Initialize the Categories controller.
       CategoriesController = $controller('CategoriesController as vm', {
         $scope: $scope,
-        crawlerResolve: {}
+        categoryResolve: {}
       });
 
       // Spy on state go
@@ -72,13 +72,13 @@
       var sampleCategoryPostData;
 
       beforeEach(function () {
-        // Create a sample crawler object
+        // Create a sample category object
         sampleCategoryPostData = new CategoriesService({
           title: 'An Category about MEAN',
           content: 'MEAN rocks!'
         });
 
-        $scope.vm.crawler = sampleCategoryPostData;
+        $scope.vm.category = sampleCategoryPostData;
       });
 
       it('should send a POST request with the form input values and then locate to new object URL', inject(function (CategoriesService) {
@@ -89,9 +89,9 @@
         $scope.vm.save(true);
         $httpBackend.flush();
 
-        // Test URL redirection after the crawler was created
+        // Test URL redirection after the category was created
         expect($state.go).toHaveBeenCalledWith('categories.view', {
-          crawlerId: mockCategory._id
+          categoryId: mockCategory._id
         });
       }));
 
@@ -110,11 +110,11 @@
 
     describe('vm.save() as update', function () {
       beforeEach(function () {
-        // Mock crawler in $scope
-        $scope.vm.crawler = mockCategory;
+        // Mock category in $scope
+        $scope.vm.category = mockCategory;
       });
 
-      it('should update a valid crawler', inject(function (CategoriesService) {
+      it('should update a valid category', inject(function (CategoriesService) {
         // Set PUT response
         $httpBackend.expectPUT(/api\/categories\/([0-9a-fA-F]{24})$/).respond();
 
@@ -124,7 +124,7 @@
 
         // Test URL location to new object
         expect($state.go).toHaveBeenCalledWith('categories.view', {
-          crawlerId: mockCategory._id
+          categoryId: mockCategory._id
         });
       }));
 
@@ -144,10 +144,10 @@
     describe('vm.remove()', function () {
       beforeEach(function () {
         // Setup categories
-        $scope.vm.crawler = mockCategory;
+        $scope.vm.category = mockCategory;
       });
 
-      it('should delete the crawler and redirect to categories', function () {
+      it('should delete the category and redirect to categories', function () {
         // Return true on confirm message
         spyOn(window, 'confirm').and.returnValue(true);
 
@@ -159,7 +159,7 @@
         expect($state.go).toHaveBeenCalledWith('categories.list');
       });
 
-      it('should should not delete the crawler and not redirect', function () {
+      it('should should not delete the category and not redirect', function () {
         // Return false on confirm message
         spyOn(window, 'confirm').and.returnValue(false);
 

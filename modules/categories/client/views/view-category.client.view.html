@@ -1,9 +1,9 @@
 <section>
   <div class="page-header">
-    <h1 ng-bind="vm.crawler.title"></h1>
+    <h1 ng-bind="vm.category.title"></h1>
   </div>
-  <div class="pull-right" ng-show="vm.crawler.isCurrentUserOwner">
-    <a class="btn btn-primary" ui-sref="categories.edit({ crawlerId: vm.crawler._id })">
+  <div class="pull-right" ng-show="vm.category.isCurrentUserOwner">
+    <a class="btn btn-primary" ui-sref="categories.edit({ categoryId: vm.category._id })">
       <i class="glyphicon glyphicon-edit"></i>
     </a>
     <a class="btn btn-primary" ng-click="vm.remove()">
@@ -13,11 +13,11 @@
   <small>
     <em class="text-muted">
       Posted on
-      <span ng-bind="vm.crawler.created | date:'mediumDate'"></span>
+      <span ng-bind="vm.category.created | date:'mediumDate'"></span>
       by
-      <span ng-if="vm.crawler.user" ng-bind="vm.crawler.user.displayName"></span>
-      <span ng-if="!vm.crawler.user">Deleted User</span>
+      <span ng-if="vm.category.user" ng-bind="vm.category.user.displayName"></span>
+      <span ng-if="!vm.category.user">Deleted User</span>
     </em>
   </small>
-  <p class="lead" ng-bind="vm.crawler.content"></p>
+  <p class="lead" ng-bind="vm.category.content"></p>
 </section>

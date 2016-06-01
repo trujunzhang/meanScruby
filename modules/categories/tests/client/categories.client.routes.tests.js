@@ -64,9 +64,9 @@
 
         beforeEach(inject(function ($controller, $state, $templateCache) {
           viewstate = $state.get('categories.view');
-          $templateCache.put('modules/categories/client/views/view-crawler.client.view.html', '');
+          $templateCache.put('modules/categories/client/views/view-category.client.view.html', '');
 
-          // create mock crawler
+          // create mock category
           mockCategory = new CategoriesService({
             _id: '525a8422f6d0f87f0e407a33',
             title: 'An Category about MEAN',
@@ -76,27 +76,27 @@
           // Initialize Controller
           CategoriesController = $controller('CategoriesController as vm', {
             $scope: $scope,
-            crawlerResolve: mockCategory
+            categoryResolve: mockCategory
           });
         }));
 
         it('Should have the correct URL', function () {
-          expect(viewstate.url).toEqual('/:crawlerId');
+          expect(viewstate.url).toEqual('/:categoryId');
         });
 
         it('Should have a resolve function', function () {
           expect(typeof viewstate.resolve).toEqual('object');
-          expect(typeof viewstate.resolve.crawlerResolve).toEqual('function');
+          expect(typeof viewstate.resolve.categoryResolve).toEqual('function');
         });
 
         it('should respond to URL', inject(function ($state) {
           expect($state.href(viewstate, {
-            crawlerId: 1
+            categoryId: 1
           })).toEqual('/categories/1');
         }));
 
-        it('should attach an crawler to the controller scope', function () {
-          expect($scope.vm.crawler._id).toBe(mockCategory._id);
+        it('should attach an category to the controller scope', function () {
+          expect($scope.vm.category._id).toBe(mockCategory._id);
         });
 
         it('Should not be abstract', function () {
@@ -104,7 +104,7 @@
         });
 
         it('Should have templateUrl', function () {
-          expect(viewstate.templateUrl).toBe('modules/categories/client/views/view-crawler.client.view.html');
+          expect(viewstate.templateUrl).toBe('modules/categories/client/views/view-category.client.view.html');
         });
       });
 
@@ -115,15 +115,15 @@
 
         beforeEach(inject(function ($controller, $state, $templateCache) {
           createstate = $state.get('categories.create');
-          $templateCache.put('modules/categories/client/views/form-crawler.client.view.html', '');
+          $templateCache.put('modules/categories/client/views/form-category.client.view.html', '');
 
-          // create mock crawler
+          // create mock category
           mockCategory = new CategoriesService();
 
           // Initialize Controller
           CategoriesController = $controller('CategoriesController as vm', {
             $scope: $scope,
-            crawlerResolve: mockCategory
+            categoryResolve: mockCategory
           });
         }));
 
@@ -133,16 +133,16 @@
 
         it('Should have a resolve function', function () {
           expect(typeof createstate.resolve).toEqual('object');
-          expect(typeof createstate.resolve.crawlerResolve).toEqual('function');
+          expect(typeof createstate.resolve.categoryResolve).toEqual('function');
         });
 
         it('should respond to URL', inject(function ($state) {
           expect($state.href(createstate)).toEqual('/categories/create');
         }));
 
-        it('should attach an crawler to the controller scope', function () {
-          expect($scope.vm.crawler._id).toBe(mockCategory._id);
-          expect($scope.vm.crawler._id).toBe(undefined);
+        it('should attach an category to the controller scope', function () {
+          expect($scope.vm.category._id).toBe(mockCategory._id);
+          expect($scope.vm.category._id).toBe(undefined);
         });
 
         it('Should not be abstract', function () {
@@ -150,7 +150,7 @@
         });
 
         it('Should have templateUrl', function () {
-          expect(createstate.templateUrl).toBe('modules/categories/client/views/form-crawler.client.view.html');
+          expect(createstate.templateUrl).toBe('modules/categories/client/views/form-category.client.view.html');
         });
       });
 
@@ -161,9 +161,9 @@
 
         beforeEach(inject(function ($controller, $state, $templateCache) {
           editstate = $state.get('categories.edit');
-          $templateCache.put('modules/categories/client/views/form-crawler.client.view.html', '');
+          $templateCache.put('modules/categories/client/views/form-category.client.view.html', '');
 
-          // create mock crawler
+          // create mock category
           mockCategory = new CategoriesService({
             _id: '525a8422f6d0f87f0e407a33',
             title: 'An Category about MEAN',
@@ -173,27 +173,27 @@
           // Initialize Controller
           CategoriesController = $controller('CategoriesController as vm', {
             $scope: $scope,
-            crawlerResolve: mockCategory
+            categoryResolve: mockCategory
           });
         }));
 
         it('Should have the correct URL', function () {
-          expect(editstate.url).toEqual('/:crawlerId/edit');
+          expect(editstate.url).toEqual('/:categoryId/edit');
         });
 
         it('Should have a resolve function', function () {
           expect(typeof editstate.resolve).toEqual('object');
-          expect(typeof editstate.resolve.crawlerResolve).toEqual('function');
+          expect(typeof editstate.resolve.categoryResolve).toEqual('function');
         });
 
         it('should respond to URL', inject(function ($state) {
           expect($state.href(editstate, {
-            crawlerId: 1
+            categoryId: 1
           })).toEqual('/categories/1/edit');
         }));
 
-        it('should attach an crawler to the controller scope', function () {
-          expect($scope.vm.crawler._id).toBe(mockCategory._id);
+        it('should attach an category to the controller scope', function () {
+          expect($scope.vm.category._id).toBe(mockCategory._id);
         });
 
         it('Should not be abstract', function () {
@@ -201,7 +201,7 @@
         });
 
         it('Should have templateUrl', function () {
-          expect(editstate.templateUrl).toBe('modules/categories/client/views/form-crawler.client.view.html');
+          expect(editstate.templateUrl).toBe('modules/categories/client/views/form-category.client.view.html');
         });
 
         xit('Should go to unauthorized route', function () {

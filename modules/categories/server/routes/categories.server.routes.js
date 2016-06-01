@@ -18,12 +18,12 @@ module.exports = function (app) {
   app.route('/api/categoriesCount')
       .get(categories.categoriesCount);
 
-  // Single crawler routes
-  app.route('/api/categories/:crawlerId').all(categoriesPolicy.isAllowed)
+  // Single category routes
+  app.route('/api/categories/:categoryId').all(categoriesPolicy.isAllowed)
     .get(categories.read)
     .put(categories.update)
     .delete(categories.delete);
 
-  // Finish by binding the crawler middleware
-  app.param('crawlerId', categories.crawlerByID);
+  // Finish by binding the category middleware
+  app.param('categoryId', categories.categoryByID);
 };

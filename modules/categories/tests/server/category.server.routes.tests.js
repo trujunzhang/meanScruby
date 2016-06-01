@@ -15,7 +15,7 @@ var app,
   agent,
   credentials,
   user,
-  crawler;
+  category;
 
 /**
  * Category routes tests
@@ -48,9 +48,9 @@ describe('Category CRUD tests', function () {
       provider: 'local'
     });
 
-    // Save a user to the test db and create new crawler
+    // Save a user to the test db and create new category
     user.save(function () {
-      crawler = {
+      category = {
         title: 'Category Title',
         content: 'Category Content'
       };
@@ -59,7 +59,7 @@ describe('Category CRUD tests', function () {
     });
   });
 
-  it('should be able to save an crawler if logged in', function (done) {
+  it('should be able to save an category if logged in', function (done) {
     agent.post('/api/auth/signin')
       .send(credentials)
       .expect(200)
@@ -72,20 +72,20 @@ describe('Category CRUD tests', function () {
         // Get the userId
         var userId = user.id;
 
-        // Save a new crawler
+        // Save a new category
         agent.post('/api/categories')
-          .send(crawler)
+          .send(category)
           .expect(200)
-          .end(function (crawlerSaveErr, crawlerSaveRes) {
-            // Handle crawler save error
-            if (crawlerSaveErr) {
-              return done(crawlerSaveErr);
+          .end(function (categorySaveErr, categorySaveRes) {
+            // Handle category save error
+            if (categorySaveErr) {
+              return done(categorySaveErr);
             }
 
             // Get a list of categories
             agent.get('/api/categories')
               .end(function (categoriesGetErr, categoriesGetRes) {
-                // Handle crawler save error
+                // Handle category save error
                 if (categoriesGetErr) {
                   return done(categoriesGetErr);
                 }
@@ -104,19 +104,19 @@ describe('Category CRUD tests', function () {
       });
   });
 
-  it('should not be able to save an crawler if not logged in', function (done) {
+  it('should not be able to save an category if not logged in', function (done) {
     agent.post('/api/categories')
-      .send(crawler)
+      .send(category)
       .expect(403)
-      .end(function (crawlerSaveErr, crawlerSaveRes) {
+      .end(function (categorySaveErr, categorySaveRes) {
         // Call the assertion callback
-        done(crawlerSaveErr);
+        done(categorySaveErr);
       });
   });
 
-  it('should not be able to save an crawler if no title is provided', function (done) {
+  it('should not be able to save an category if no title is provided', function (done) {
     // Invalidate title field
-    crawler.title = '';
+    category.title = '';
 
     agent.post('/api/auth/signin')
       .send(credentials)
@@ -130,21 +130,21 @@ describe('Category CRUD tests', function () {
         // Get the userId
         var userId = user.id;
 
-        // Save a new crawler
+        // Save a new category
         agent.post('/api/categories')
-          .send(crawler)
+          .send(category)
           .expect(400)
-          .end(function (crawlerSaveErr, crawlerSaveRes) {
+          .end(function (categorySaveErr, categorySaveRes) {
             // Set message assertion
-            (crawlerSaveRes.body.message).should.match('Title cannot be blank');
+            (categorySaveRes.body.message).should.match('Title cannot be blank');
 
-            // Handle crawler save error
-            done(crawlerSaveErr);
+            // Handle category save error
+            done(categorySaveErr);
           });
       });
   });
 
-  it('should be able to update an crawler if signed in', function (done) {
+  it('should be able to update an category if signed in', function (done) {
     agent.post('/api/auth/signin')
       .send(credentials)
       .expect(200)
@@ -157,32 +157,32 @@ describe('Category CRUD tests', function () {
         // Get the userId
         var userId = user.id;
 
-        // Save a new crawler
+        // Save a new category
         agent.post('/api/categories')
-          .send(crawler)
+          .send(category)
           .expect(200)
-          .end(function (crawlerSaveErr, crawlerSaveRes) {
-            // Handle crawler save error
-            if (crawlerSaveErr) {
-              return done(crawlerSaveErr);
+          .end(function (categorySaveErr, categorySaveRes) {
+            // Handle category save error
+            if (categorySaveErr) {
+              return done(categorySaveErr);
             }
 
-            // Update crawler title
-            crawler.title = 'WHY YOU GOTTA BE SO MEAN?';
+            // Update category title
+            category.title = 'WHY YOU GOTTA BE SO MEAN?';
 
-            // Update an existing crawler
-            agent.put('/api/categories/' + crawlerSaveRes.body._id)
-              .send(crawler)
+            // Update an existing category
+            agent.put('/api/categories/' + categorySaveRes.body._id)
+              .send(category)
               .expect(200)
-              .end(function (crawlerUpdateErr, crawlerUpdateRes) {
-                // Handle crawler update error
-                if (crawlerUpdateErr) {
-                  return done(crawlerUpdateErr);
+              .end(function (categoryUpdateErr, categoryUpdateRes) {
+                // Handle category update error
+                if (categoryUpdateErr) {
+                  return done(categoryUpdateErr);
                 }
 
                 // Set assertions
-                (crawlerUpdateRes.body._id).should.equal(crawlerSaveRes.body._id);
-                (crawlerUpdateRes.body.title).should.match('WHY YOU GOTTA BE SO MEAN?');
+                (categoryUpdateRes.body._id).should.equal(categorySaveRes.body._id);
+                (categoryUpdateRes.body.title).should.match('WHY YOU GOTTA BE SO MEAN?');
 
                 // Call the assertion callback
                 done();
@@ -192,11 +192,11 @@ describe('Category CRUD tests', function () {
   });
 
   it('should be able to get a list of categories if not signed in', function (done) {
-    // Create new crawler model instance
-    var crawlerObj = new Category(crawler);
+    // Create new category model instance
+    var categoryObj = new Category(category);
 
-    // Save the crawler
-    crawlerObj.save(function () {
+    // Save the category
+    categoryObj.save(function () {
       // Request categories
       request(app).get('/api/categories')
         .end(function (req, res) {
@@ -210,16 +210,16 @@ describe('Category CRUD tests', function () {
     });
   });
 
-  it('should be able to get a single crawler if not signed in', function (done) {
-    // Create new crawler model instance
-    var crawlerObj = new Category(crawler);
+  it('should be able to get a single category if not signed in', function (done) {
+    // Create new category model instance
+    var categoryObj = new Category(category);
 
-    // Save the crawler
-    crawlerObj.save(function () {
-      request(app).get('/api/categories/' + crawlerObj._id)
+    // Save the category
+    categoryObj.save(function () {
+      request(app).get('/api/categories/' + categoryObj._id)
         .end(function (req, res) {
           // Set assertion
-          res.body.should.be.instanceof(Object).and.have.property('title', crawler.title);
+          res.body.should.be.instanceof(Object).and.have.property('title', category.title);
 
           // Call the assertion callback
           done();
@@ -227,7 +227,7 @@ describe('Category CRUD tests', function () {
     });
   });
 
-  it('should return proper error for single crawler with an invalid Id, if not signed in', function (done) {
+  it('should return proper error for single category with an invalid Id, if not signed in', function (done) {
     // test is not a valid mongoose Id
     request(app).get('/api/categories/test')
       .end(function (req, res) {
@@ -239,19 +239,19 @@ describe('Category CRUD tests', function () {
       });
   });
 
-  it('should return proper error for single crawler which doesnt exist, if not signed in', function (done) {
-    // This is a valid mongoose Id but a non-existent crawler
+  it('should return proper error for single category which doesnt exist, if not signed in', function (done) {
+    // This is a valid mongoose Id but a non-existent category
     request(app).get('/api/categories/559e9cd815f80b4c256a8f41')
       .end(function (req, res) {
         // Set assertion
-        res.body.should.be.instanceof(Object).and.have.property('message', 'No crawler with that identifier has been found');
+        res.body.should.be.instanceof(Object).and.have.property('message', 'No category with that identifier has been found');
 
         // Call the assertion callback
         done();
       });
   });
 
-  it('should be able to delete an crawler if signed in', function (done) {
+  it('should be able to delete an category if signed in', function (done) {
     agent.post('/api/auth/signin')
       .send(credentials)
       .expect(200)
@@ -264,28 +264,28 @@ describe('Category CRUD tests', function () {
         // Get the userId
         var userId = user.id;
 
-        // Save a new crawler
+        // Save a new category
         agent.post('/api/categories')
-          .send(crawler)
+          .send(category)
           .expect(200)
-          .end(function (crawlerSaveErr, crawlerSaveRes) {
-            // Handle crawler save error
-            if (crawlerSaveErr) {
-              return done(crawlerSaveErr);
+          .end(function (categorySaveErr, categorySaveRes) {
+            // Handle category save error
+            if (categorySaveErr) {
+              return done(categorySaveErr);
             }
 
-            // Delete an existing crawler
-            agent.delete('/api/categories/' + crawlerSaveRes.body._id)
-              .send(crawler)
+            // Delete an existing category
+            agent.delete('/api/categories/' + categorySaveRes.body._id)
+              .send(category)
               .expect(200)
-              .end(function (crawlerDeleteErr, crawlerDeleteRes) {
-                // Handle crawler error error
-                if (crawlerDeleteErr) {
-                  return done(crawlerDeleteErr);
+              .end(function (categoryDeleteErr, categoryDeleteRes) {
+                // Handle category error error
+                if (categoryDeleteErr) {
+                  return done(categoryDeleteErr);
                 }
 
                 // Set assertions
-                (crawlerDeleteRes.body._id).should.equal(crawlerSaveRes.body._id);
+                (categoryDeleteRes.body._id).should.equal(categorySaveRes.body._id);
 
                 // Call the assertion callback
                 done();
@@ -294,30 +294,30 @@ describe('Category CRUD tests', function () {
       });
   });
 
-  it('should not be able to delete an crawler if not signed in', function (done) {
-    // Set crawler user
-    crawler.user = user;
+  it('should not be able to delete an category if not signed in', function (done) {
+    // Set category user
+    category.user = user;
 
-    // Create new crawler model instance
-    var crawlerObj = new Category(crawler);
+    // Create new category model instance
+    var categoryObj = new Category(category);
 
-    // Save the crawler
-    crawlerObj.save(function () {
-      // Try deleting crawler
-      request(app).delete('/api/categories/' + crawlerObj._id)
+    // Save the category
+    categoryObj.save(function () {
+      // Try deleting category
+      request(app).delete('/api/categories/' + categoryObj._id)
         .expect(403)
-        .end(function (crawlerDeleteErr, crawlerDeleteRes) {
+        .end(function (categoryDeleteErr, categoryDeleteRes) {
           // Set message assertion
-          (crawlerDeleteRes.body.message).should.match('User is not authorized');
+          (categoryDeleteRes.body.message).should.match('User is not authorized');
 
-          // Handle crawler error error
-          done(crawlerDeleteErr);
+          // Handle category error error
+          done(categoryDeleteErr);
         });
 
     });
   });
 
-  it('should be able to get a single crawler that has an orphaned user reference', function (done) {
+  it('should be able to get a single category that has an orphaned user reference', function (done) {
     // Create orphan user creds
     var _creds = {
       username: 'orphan',
@@ -353,22 +353,22 @@ describe('Category CRUD tests', function () {
           // Get the userId
           var orphanId = orphan._id;
 
-          // Save a new crawler
+          // Save a new category
           agent.post('/api/categories')
-            .send(crawler)
+            .send(category)
             .expect(200)
-            .end(function (crawlerSaveErr, crawlerSaveRes) {
-              // Handle crawler save error
-              if (crawlerSaveErr) {
-                return done(crawlerSaveErr);
+            .end(function (categorySaveErr, categorySaveRes) {
+              // Handle category save error
+              if (categorySaveErr) {
+                return done(categorySaveErr);
               }
 
-              // Set assertions on new crawler
-              (crawlerSaveRes.body.title).should.equal(crawler.title);
-              should.exist(crawlerSaveRes.body.user);
-              should.equal(crawlerSaveRes.body.user._id, orphanId);
+              // Set assertions on new category
+              (categorySaveRes.body.title).should.equal(category.title);
+              should.exist(categorySaveRes.body.user);
+              should.equal(categorySaveRes.body.user._id, orphanId);
 
-              // force the crawler to have an orphaned user reference
+              // force the category to have an orphaned user reference
               orphan.remove(function () {
                 // now signin with valid user
                 agent.post('/api/auth/signin')
@@ -380,19 +380,19 @@ describe('Category CRUD tests', function () {
                       return done(err);
                     }
 
-                    // Get the crawler
-                    agent.get('/api/categories/' + crawlerSaveRes.body._id)
+                    // Get the category
+                    agent.get('/api/categories/' + categorySaveRes.body._id)
                       .expect(200)
-                      .end(function (crawlerInfoErr, crawlerInfoRes) {
-                        // Handle crawler error
-                        if (crawlerInfoErr) {
-                          return done(crawlerInfoErr);
+                      .end(function (categoryInfoErr, categoryInfoRes) {
+                        // Handle category error
+                        if (categoryInfoErr) {
+                          return done(categoryInfoErr);
                         }
 
                         // Set assertions
-                        (crawlerInfoRes.body._id).should.equal(crawlerSaveRes.body._id);
-                        (crawlerInfoRes.body.title).should.equal(crawler.title);
-                        should.equal(crawlerInfoRes.body.user, undefined);
+                        (categoryInfoRes.body._id).should.equal(categorySaveRes.body._id);
+                        (categoryInfoRes.body.title).should.equal(category.title);
+                        should.equal(categoryInfoRes.body.user, undefined);
 
                         // Call the assertion callback
                         done();
@@ -404,13 +404,13 @@ describe('Category CRUD tests', function () {
     });
   });
 
-  it('should be able to get a single crawler if signed in and verify the custom "isCurrentUserOwner" field is set to "true"', function (done) {
-    // Create new crawler model instance
-    crawler.user = user;
-    var crawlerObj = new Category(crawler);
+  it('should be able to get a single category if signed in and verify the custom "isCurrentUserOwner" field is set to "true"', function (done) {
+    // Create new category model instance
+    category.user = user;
+    var categoryObj = new Category(category);
 
-    // Save the crawler
-    crawlerObj.save(function () {
+    // Save the category
+    categoryObj.save(function () {
       agent.post('/api/auth/signin')
         .send(credentials)
         .expect(200)
@@ -423,31 +423,31 @@ describe('Category CRUD tests', function () {
           // Get the userId
           var userId = user.id;
 
-          // Save a new crawler
+          // Save a new category
           agent.post('/api/categories')
-            .send(crawler)
+            .send(category)
             .expect(200)
-            .end(function (crawlerSaveErr, crawlerSaveRes) {
-              // Handle crawler save error
-              if (crawlerSaveErr) {
-                return done(crawlerSaveErr);
+            .end(function (categorySaveErr, categorySaveRes) {
+              // Handle category save error
+              if (categorySaveErr) {
+                return done(categorySaveErr);
               }
 
-              // Get the crawler
-              agent.get('/api/categories/' + crawlerSaveRes.body._id)
+              // Get the category
+              agent.get('/api/categories/' + categorySaveRes.body._id)
                 .expect(200)
-                .end(function (crawlerInfoErr, crawlerInfoRes) {
-                  // Handle crawler error
-                  if (crawlerInfoErr) {
-                    return done(crawlerInfoErr);
+                .end(function (categoryInfoErr, categoryInfoRes) {
+                  // Handle category error
+                  if (categoryInfoErr) {
+                    return done(categoryInfoErr);
                   }
 
                   // Set assertions
-                  (crawlerInfoRes.body._id).should.equal(crawlerSaveRes.body._id);
-                  (crawlerInfoRes.body.title).should.equal(crawler.title);
+                  (categoryInfoRes.body._id).should.equal(categorySaveRes.body._id);
+                  (categoryInfoRes.body.title).should.equal(category.title);
 
                   // Assert that the "isCurrentUserOwner" field is set to true since the current User created it
-                  (crawlerInfoRes.body.isCurrentUserOwner).should.equal(true);
+                  (categoryInfoRes.body.isCurrentUserOwner).should.equal(true);
 
                   // Call the assertion callback
                   done();
@@ -457,16 +457,16 @@ describe('Category CRUD tests', function () {
     });
   });
 
-  it('should be able to get a single crawler if not signed in and verify the custom "isCurrentUserOwner" field is set to "false"', function (done) {
-    // Create new crawler model instance
-    var crawlerObj = new Category(crawler);
+  it('should be able to get a single category if not signed in and verify the custom "isCurrentUserOwner" field is set to "false"', function (done) {
+    // Create new category model instance
+    var categoryObj = new Category(category);
 
-    // Save the crawler
-    crawlerObj.save(function () {
-      request(app).get('/api/categories/' + crawlerObj._id)
+    // Save the category
+    categoryObj.save(function () {
+      request(app).get('/api/categories/' + categoryObj._id)
         .end(function (req, res) {
           // Set assertion
-          res.body.should.be.instanceof(Object).and.have.property('title', crawler.title);
+          res.body.should.be.instanceof(Object).and.have.property('title', category.title);
           // Assert the custom field "isCurrentUserOwner" is set to false for the un-authenticated User
           res.body.should.be.instanceof(Object).and.have.property('isCurrentUserOwner', false);
           // Call the assertion callback
@@ -475,7 +475,7 @@ describe('Category CRUD tests', function () {
     });
   });
 
-  it('should be able to get single crawler, that a different user created, if logged in & verify the "isCurrentUserOwner" field is set to "false"', function (done) {
+  it('should be able to get single category, that a different user created, if logged in & verify the "isCurrentUserOwner" field is set to "false"', function (done) {
     // Create temporary user creds
     var _creds = {
       username: 'temp',
@@ -512,20 +512,20 @@ describe('Category CRUD tests', function () {
           // Get the userId
           var userId = user._id;
 
-          // Save a new crawler
+          // Save a new category
           agent.post('/api/categories')
-            .send(crawler)
+            .send(category)
             .expect(200)
-            .end(function (crawlerSaveErr, crawlerSaveRes) {
-              // Handle crawler save error
-              if (crawlerSaveErr) {
-                return done(crawlerSaveErr);
+            .end(function (categorySaveErr, categorySaveRes) {
+              // Handle category save error
+              if (categorySaveErr) {
+                return done(categorySaveErr);
               }
 
-              // Set assertions on new crawler
-              (crawlerSaveRes.body.title).should.equal(crawler.title);
-              should.exist(crawlerSaveRes.body.user);
-              should.equal(crawlerSaveRes.body.user._id, userId);
+              // Set assertions on new category
+              (categorySaveRes.body.title).should.equal(category.title);
+              should.exist(categorySaveRes.body.user);
+              should.equal(categorySaveRes.body.user._id, userId);
 
               // now signin with the temporary user
               agent.post('/api/auth/signin')
@@ -537,20 +537,20 @@ describe('Category CRUD tests', function () {
                     return done(err);
                   }
 
-                  // Get the crawler
-                  agent.get('/api/categories/' + crawlerSaveRes.body._id)
+                  // Get the category
+                  agent.get('/api/categories/' + categorySaveRes.body._id)
                     .expect(200)
-                    .end(function (crawlerInfoErr, crawlerInfoRes) {
-                      // Handle crawler error
-                      if (crawlerInfoErr) {
-                        return done(crawlerInfoErr);
+                    .end(function (categoryInfoErr, categoryInfoRes) {
+                      // Handle category error
+                      if (categoryInfoErr) {
+                        return done(categoryInfoErr);
                       }
 
                       // Set assertions
-                      (crawlerInfoRes.body._id).should.equal(crawlerSaveRes.body._id);
-                      (crawlerInfoRes.body.title).should.equal(crawler.title);
+                      (categoryInfoRes.body._id).should.equal(categorySaveRes.body._id);
+                      (categoryInfoRes.body.title).should.equal(category.title);
                       // Assert that the custom field "isCurrentUserOwner" is set to false since the current User didn't create it
-                      (crawlerInfoRes.body.isCurrentUserOwner).should.equal(false);
+                      (categoryInfoRes.body.isCurrentUserOwner).should.equal(false);
 
                       // Call the assertion callback
                       done();

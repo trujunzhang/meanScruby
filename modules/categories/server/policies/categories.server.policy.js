@@ -18,7 +18,7 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/categories',
       permissions: '*'
     }, {
-      resources: '/api/categories/:crawlerId',
+      resources: '/api/categories/:categoryId',
       permissions: '*'
     }]
   }, {
@@ -27,7 +27,7 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/categories',
       permissions: ['get', 'post']
     }, {
-      resources: '/api/categories/:crawlerId',
+      resources: '/api/categories/:categoryId',
       permissions: ['get']
     }]
   }, {
@@ -36,7 +36,7 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/categories',
       permissions: ['get']
     }, {
-      resources: '/api/categories/:crawlerId',
+      resources: '/api/categories/:categoryId',
       permissions: ['get']
     }]
   }]);
@@ -48,8 +48,8 @@ exports.invokeRolesPolicies = function () {
 exports.isAllowed = function (req, res, next) {
   var roles = (req.user) ? req.user.roles : ['guest'];
 
-  // If an crawler is being processed and the current user created it then allow any manipulation
-  if (req.crawler && req.user && req.crawler.user && req.crawler.user.id === req.user.id) {
+  // If an category is being processed and the current user created it then allow any manipulation
+  if (req.category && req.user && req.category.user && req.category.user.id === req.user.id) {
     return next();
   }
 

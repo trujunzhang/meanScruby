@@ -25,11 +25,11 @@
       })
       .state('categories.create', {
         url: '/create',
-        templateUrl: 'modules/categories/client/views/form-crawler.client.view.html',
+        templateUrl: 'modules/categories/client/views/form-category.client.view.html',
         controller: 'CategoriesController',
         controllerAs: 'vm',
         resolve: {
-          crawlerResolve: newCategory
+          categoryResolve: newCategory
         },
         data: {
           roles: ['user', 'admin'],
@@ -37,28 +37,28 @@
         }
       })
       .state('categories.edit', {
-        url: '/:crawlerId/edit',
-        templateUrl: 'modules/categories/client/views/form-crawler.client.view.html',
+        url: '/:categoryId/edit',
+        templateUrl: 'modules/categories/client/views/form-category.client.view.html',
         controller: 'CategoriesController',
         controllerAs: 'vm',
         resolve: {
-          crawlerResolve: getCategory
+          categoryResolve: getCategory
         },
         data: {
           roles: ['user', 'admin'],
-          pageTitle: 'Edit Category {{ crawlerResolve.title }}'
+          pageTitle: 'Edit Category {{ categoryResolve.title }}'
         }
       })
       .state('categories.view', {
-        url: '/:crawlerId',
-        templateUrl: 'modules/categories/client/views/view-crawler.client.view.html',
+        url: '/:categoryId',
+        templateUrl: 'modules/categories/client/views/view-category.client.view.html',
         controller: 'CategoriesController',
         controllerAs: 'vm',
         resolve: {
-          crawlerResolve: getCategory
+          categoryResolve: getCategory
         },
         data: {
-          pageTitle: 'Category {{ crawlerResolve.title }}'
+          pageTitle: 'Category {{ categoryResolve.title }}'
         }
       });
   }
@@ -67,7 +67,7 @@
 
   function getCategory($stateParams, CategoriesService) {
     return CategoriesService.get({
-      crawlerId: $stateParams.crawlerId
+      categoryId: $stateParams.categoryId
     }).$promise;
   }
 

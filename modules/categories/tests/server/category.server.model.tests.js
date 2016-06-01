@@ -12,7 +12,7 @@ var should = require('should'),
  * Globals
  */
 var user,
-  crawler;
+  category;
 
 /**
  * Unit tests
@@ -30,7 +30,7 @@ describe('Category Model Unit Tests:', function () {
     });
 
     user.save(function () {
-      crawler = new Category({
+      category = new Category({
         title: 'Category Title',
         content: 'Category Content',
         user: user
@@ -43,16 +43,16 @@ describe('Category Model Unit Tests:', function () {
   describe('Method Save', function () {
     it('should be able to save without problems', function (done) {
       this.timeout(10000);
-      return crawler.save(function (err) {
+      return category.save(function (err) {
         should.not.exist(err);
         done();
       });
     });
 
     it('should be able to show an error when try to save without title', function (done) {
-      crawler.title = '';
+      category.title = '';
 
-      return crawler.save(function (err) {
+      return category.save(function (err) {
         should.exist(err);
         done();
       });

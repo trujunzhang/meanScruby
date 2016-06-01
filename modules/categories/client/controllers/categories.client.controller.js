@@ -5,12 +5,12 @@
     .module('categories')
     .controller('CategoriesController', CategoriesController);
 
-  CategoriesController.$inject = ['$scope', '$state', 'crawlerResolve', '$window', 'Authentication'];
+  CategoriesController.$inject = ['$scope', '$state', 'categoryResolve', '$window', 'Authentication'];
 
-  function CategoriesController($scope, $state, crawler, $window, Authentication) {
+  function CategoriesController($scope, $state, category, $window, Authentication) {
     var vm = this;
 
-    vm.crawler = crawler;
+    vm.category = category;
     vm.authentication = Authentication;
     vm.error = null;
     vm.form = {};
@@ -20,27 +20,27 @@
     // Remove existing Category
     function remove() {
       if ($window.confirm('Are you sure you want to delete?')) {
-        vm.crawler.$remove($state.go('categories.list'));
+        vm.category.$remove($state.go('categories.list'));
       }
     }
 
     // Save Category
     function save(isValid) {
       if (!isValid) {
-        $scope.$broadcast('show-errors-check-validity', 'vm.form.crawlerForm');
+        $scope.$broadcast('show-errors-check-validity', 'vm.form.categoryForm');
         return false;
       }
 
       // TODO: move create/update logic to service
-      if (vm.crawler._id) {
-        vm.crawler.$update(successCallback, errorCallback);
+      if (vm.category._id) {
+        vm.category.$update(successCallback, errorCallback);
       } else {
-        vm.crawler.$save(successCallback, errorCallback);
+        vm.category.$save(successCallback, errorCallback);
       }
 
       function successCallback(res) {
         $state.go('categories.view', {
-          crawlerId: res._id
+          categoryId: res._id
         });
       }
 

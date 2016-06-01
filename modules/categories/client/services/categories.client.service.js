@@ -8,8 +8,8 @@
   CategoriesService.$inject = ['$resource'];
 
   function CategoriesService($resource) {
-    return $resource('api/categories/:crawlerId', {
-      crawlerId: '@_id'
+    return $resource('api/categories/:categoryId', {
+      categoryId: '@_id'
     }, {
       update: {
         method: 'PUT'

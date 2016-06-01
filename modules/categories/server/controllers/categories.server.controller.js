@@ -9,70 +9,70 @@ var path = require('path'),
     errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
 /**
- * Create an crawler
+ * Create an category
  */
 exports.create = function (req, res) {
-    var crawler = new Category(req.body);
-    crawler.user = req.user;
+    var category = new Category(req.body);
+    category.user = req.user;
 
-    crawler.save(function (err) {
+    category.save(function (err) {
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
             });
         } else {
-            res.json(crawler);
+            res.json(category);
         }
     });
 };
 
 /**
- * Show the current crawler
+ * Show the current category
  */
 exports.read = function (req, res) {
     // convert mongoose document to JSON
-    var crawler = req.crawler ? req.crawler.toJSON() : {};
+    var category = req.category ? req.category.toJSON() : {};
 
     // Add a custom field to the Category, for determining if the current User is the "owner".
     // NOTE: This field is NOT persisted to the database, since it doesn't exist in the Category model.
-    crawler.isCurrentUserOwner = !!(req.user && crawler.user && crawler.user._id.toString() === req.user._id.toString());
+    category.isCurrentUserOwner = !!(req.user && category.user && category.user._id.toString() === req.user._id.toString());
 
-    res.json(crawler);
+    res.json(category);
 };
 
 /**
- * Update an crawler
+ * Update an category
  */
 exports.update = function (req, res) {
-    var crawler = req.crawler;
+    var category = req.category;
 
-    crawler.title = req.body.title;
-    crawler.content = req.body.content;
+    category.title = req.body.title;
+    category.content = req.body.content;
 
-    crawler.save(function (err) {
+    category.save(function (err) {
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
             });
         } else {
-            res.json(crawler);
+            res.json(category);
         }
     });
 };
 
 /**
- * Delete an crawler
+ * Delete an category
  */
 exports.delete = function (req, res) {
-    var crawler = req.crawler;
+    var category = req.category;
 
-    crawler.remove(function (err) {
+    category.remove(function (err) {
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
             });
         } else {
-            res.json(crawler);
+            res.json(category);
         }
     });
 };
@@ -129,7 +129,7 @@ exports.categoriesList = function (req, res) {
 /**
  * Category middleware
  */
-exports.crawlerByID = function (req, res, next, id) {
+exports.categoryByID = function (req, res, next, id) {
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(400).send({
@@ -137,15 +137,15 @@ exports.crawlerByID = function (req, res, next, id) {
         });
     }
 
-    Category.findById(id).populate('user', 'displayName').exec(function (err, crawler) {
+    Category.findById(id).populate('user', 'displayName').exec(function (err, category) {
         if (err) {
             return next(err);
-        } else if (!crawler) {
+        } else if (!category) {
             return res.status(404).send({
-                message: 'No crawler with that identifier has been found'
+                message: 'No category with that identifier has been found'
             });
         }
-        req.crawler = crawler;
+        req.category = category;
         next();
     });
 };
