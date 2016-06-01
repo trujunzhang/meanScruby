@@ -32,7 +32,7 @@
         getTotalItems();
 
         function getTotalItems() {
-            $http.get('api/totalItems/').success(function (response) {
+            $http.get('api/categoriesCount').success(function (response) {
                 vm.totalItems = response;
             }).error(function (response) {
                 vm.error = response.message;

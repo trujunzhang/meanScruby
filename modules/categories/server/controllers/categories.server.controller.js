@@ -93,7 +93,7 @@ exports.list = function (req, res) {
 };
 
 
-exports.totalItems = function (req, res) {
+exports.categoriesCount = function (req, res) {
     Category.count(function (err, count) {
         if (err) {
             return res.status(400).send({
