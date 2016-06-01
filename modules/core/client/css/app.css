@@ -1900,26 +1900,26 @@
 #desktop-footer .team .social {
   margin-top: 20px;
 }
-#showcases {
+#main-container {
   background-color: #e4e4e4;
 }
-#showcases #crawling-panel {
+#main-container #base-panel {
   background-color: white;
   margin-top: 20px;
   margin-bottom: 20px;
 }
-#showcases #app_panel {
+#main-container #app_panel {
   padding-top: 40px;
 }
-#showcases .table-description a {
+#main-container .table-description a {
   width: 100px;
   height: 400px;
 }
-#showcases .cases-export-panel {
+#main-container .cases-export-panel {
   padding-top: 20px;
   padding-bottom: 50px;
 }
-#showcases .cif-box {
+#main-container .cif-box {
   background: white;
   margin: 0 auto;
   position: relative;
@@ -1929,20 +1929,20 @@
   border: solid 1px #f15a24;
   border-radius: 4px;
 }
-#showcases .cif-box .cif-inner {
+#main-container .cif-box .cif-inner {
   max-width: 380px;
   margin: 0 auto;
 }
-#showcases .cif-box .cif-inner h2 {
+#main-container .cif-box .cif-inner h2 {
   margin-top: 0;
   font-weight: 300;
   color: #4d4d4d;
   font-size: 74px;
 }
-#showcases .cif-box .cif-inner p {
+#main-container .cif-box .cif-inner p {
   margin-bottom: 32px;
 }
-#showcases .cif-box .cif-button {
+#main-container .cif-box .cif-button {
   left: 50%;
   position: absolute;
   top: 100%;
@@ -1950,7 +1950,7 @@
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-#showcases #thumbnail {
+#main-container #thumbnail {
   width: 120px;
   height: 120px;
 }
