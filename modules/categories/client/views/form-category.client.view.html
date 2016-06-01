@@ -1,28 +1,27 @@
-<section>
-  <div class="page-header">
-    <h1>{{vm.crawler._id ? 'Edit Category' : 'New Category'}}</h1>
+<div class="row">
+  <div class="container form_panel">
+
+    <div class="row">
+      <nav>
+        <ul class="pager">
+          <li class="previous"><a ui-sref="categories.list">Back</a></li>
+          <li class="next"> <a ui-sref="categories.list">Show</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="panel panel-info form-bs">
+      <div class="panel-heading">
+        <h4>Editing category</h4>
+      </div>
+      <div class="panel-body">
+        <%= render 'form' %>
+      </div>
+
+    </div>
+
   </div>
-  <div class="col-md-12">
-    <form name="vm.form.crawlerForm" class="form-horizontal" ng-submit="vm.save(vm.form.crawlerForm.$valid)" novalidate>
-      <fieldset>
-        <div class="form-group" show-errors>
-          <label class="control-label" for="title">Title</label>
-          <input name="title" type="text" ng-model="vm.crawler.title" id="title" class="form-control" placeholder="Title" required>
-          <div ng-messages="vm.form.crawlerForm.title.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Category title is required.</p>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="control-label" for="content">Content</label>
-          <textarea name="content" data-ng-model="vm.crawler.content" id="content" class="form-control" cols="30" rows="10" placeholder="Content"></textarea>
-        </div>
-        <div class="form-group">
-          <button type="submit" class="btn btn-default">{{vm.crawler._id ? 'Update' : 'Create'}}</button>
-        </div>
-        <div ng-show="vm.error" class="text-danger">
-          <strong ng-bind="vm.error"></strong>
-        </div>
-      </fieldset>
-    </form>
-  </div>
-</section>
+</div>
+
+
+

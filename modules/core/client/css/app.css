@@ -1954,3 +1954,16 @@
   width: 120px;
   height: 120px;
 }
+.form_panel .field input,
+.form_panel .field textarea {
+  width: 600px;
+}
+.form_panel .field textarea {
+  height: 200px;
+}
+.form_panel .panel-heading {
+  padding: 15px;
+}
+.form_panel .panel-heading h4 {
+  margin: 0px;
+}
