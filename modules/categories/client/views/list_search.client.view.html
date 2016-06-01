@@ -1,7 +1,7 @@
 <div class="row">
   <nav>
     <ul class="pager">
-      <li class="previous"> <%= link_to 'New Category', new_cat_path %></li>
+      <li class="previous"><a ui-sref="articles.create">New Category</a></li>
       <li class="next"><h3 style="float: right;">Count: <span>{{vm.totalItems | number}}</span></h3></li>
     </ul>
   </nav>
