@@ -3,12 +3,16 @@
   <tr>
     <th>Title</th>
     <th>Description</th>
+    <th>Detail</th>
   </tr>
   </thead>
   <tbody>
   <tr ng-repeat="category in vm.categories">
     <td>{{category.title}}</td>
     <td>{{category.description}}</td>
+    <td>
+      <button ui-sref="categories.view({ articleId: article._id })">Detail</button>
+    </td>
   </tr>
   </tbody>
 </table>
